@@ -3,6 +3,7 @@ import psutil
 from time import sleep
 from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient, Point
+import threading
 
 #if __name__ == "__main__
 
@@ -35,6 +36,7 @@ def merge(first, second):
     return first
 
 __location__ = lambda: os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+ftype = type(lambda: 3)
 class influxdb():
     def __init__(self):
         os.system(os.path.join(__location__(), "influx.bat"))
@@ -55,6 +57,10 @@ class influxdb():
         self.points = merge(self.points, {point : {field : getter}})
     
     def tick(self):
+        def inner(pointer = self.points):
+            for key, value in pointer.items():
+                if type(value) == ftype:
+                else:
         for point, fields in self.points.items():
             for field, getter in fields.items():
                 value = getter()
@@ -62,13 +68,34 @@ class influxdb():
                 self.write(value)
                 print("point: " + repr(point) + ",	field: " + repr(field) + ",	value: " + repr(value))
     
-    #should parallelize this method
-    def run(self, condition = True, duration = 1):
+    def __run(self, condition)
         while condition:
             self.tick()
             sleep(duration)
+    
+    def run(self, condition = True, duration = 0):
+        x = threading.Thread(target = self.__run, args = (condition,), daemon = True)
+        x.start()
 
 engine = influxdb()
 engine.add("CPU", "Auslastung", lambda: psutil.cpu_percent(interval = 1))
 engine.add("CPU", "Frequenz", lambda: psutil.cpu_freq().current)
 engine.run()
+
+#Execute Flux Queries Example
+"""
+query_api = client.query_api()
+
+ver = "data" # This variable would actually come from a function
+params = {
+    "pVersion": ver,
+}
+query =                      '''from(bucket: "db")
+                                |> range(start: -200d)
+                                |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+                                |> filter(fn: (r) => r._measurement == "test_result")
+                                |> filter(fn: (r) => r.version == pVersion)
+                                |> keep(columns: ["_time", "test", "run", "status_tag", "duration_sec", "version"])'''
+
+df = query_api.query_data_frame(query=query, params=params)
+"""
