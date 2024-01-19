@@ -1,0 +1,1 @@
+powershell start cmd -v runas -ArgumentList {/c \"@echo on & cd \"C:\\Program Files\\InfluxData\\influxdb\\influxdb2-2.7.5-windows\" & influxd.exe\"}
