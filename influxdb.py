@@ -50,31 +50,27 @@ class influxdb():
         #types:     {string : {string : lambda}}
         self.points = {}
     
-    def write(self, value):
-        self.write_api.write(bucket = self.BUCKET, record = value)
+    def write(self, influxpoint):
+        self.write_api.write(bucket = self.BUCKET, record = influxpoint)
     
     def add(self, point, field, getter):
         self.points = merge(self.points, {point : {field : getter}})
     
     def tick(self):
-        def inner(pointer = self.points):
-            for key, value in pointer.items():
-                if type(value) == ftype:
-                else:
         for point, fields in self.points.items():
             for field, getter in fields.items():
                 value = getter()
-                newpoint = Point(point).field(field, value)
-                self.write(value)
+                influxpoint = Point(point).field(field, value)
+                self.write(influxpoint)
                 print("point: " + repr(point) + ",	field: " + repr(field) + ",	value: " + repr(value))
     
-    def __run(self, condition)
+    def __run(self, condition, duration):
         while condition:
             self.tick()
             sleep(duration)
     
     def run(self, condition = True, duration = 0):
-        x = threading.Thread(target = self.__run, args = (condition,), daemon = True)
+        x = threading.Thread(target = self.__run, args = (condition, duration), daemon = False)
         x.start()
 
 engine = influxdb()
