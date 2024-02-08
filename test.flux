@@ -1,4 +1,4 @@
-from(bucket: "example-bucket")
+from(bucket: "INFLUXDB_BUCKET")
     |> range(start: -1d)
     |> filter(fn: (r) => r._measurement == "example-measurement")
     |> mean()
