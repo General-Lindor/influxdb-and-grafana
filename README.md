@@ -1,4 +1,4 @@
-# #Was macht dieses Projekt?
+# Was macht dieses Projekt?
 
 Speicherung von Hardware-related Daten in einer zeitbasierten Influx-Datenbank und Visualisierung der Daten.
 
@@ -61,7 +61,7 @@ Sollte nicht present sein im github, musste selber einrichten
 
 # To-Do-List
 
--Visualisierung \+ GUI
--Auswahl der Daten, die gespeichert werden sollen
--flux language implementation: queries über flux
--docker?
+- Visualisierung \+ GUI
+- Auswahl der Daten, die gespeichert werden sollen
+- flux language implementation: queries über flux
+- docker?
