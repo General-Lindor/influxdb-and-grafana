@@ -1,5 +1,5 @@
-from(bucket: "INFLUXDB_BUCKET")
-    |> range(start: -1d)
-    |> filter(fn: (r) => r._measurement == "example-measurement")
+data = from(bucket: "system_monitoring")
+    |> range(start: -1h)
+    |> filter(fn: (r) => r._measurement == "CPU" and r._field == "Auslastung")")
     |> mean()
     |> yield(name: "_results")

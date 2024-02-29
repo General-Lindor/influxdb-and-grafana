@@ -1,6 +1,8 @@
 import os
 import psutil
 from time import sleep
+from time import time
+import math
 from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient, Point
 import threading
@@ -54,7 +56,9 @@ class influxdb():
         self.write_api.write(bucket = self.BUCKET, record = influxpoint)
     
     def add(self, point, field, getter):
-        self.points = merge(self.points, {point : {field : getter}})
+        m = merge(self.points, {point : {field : getter}})
+        print(m)
+        self.points = m
     
     def tick(self):
         for point, fields in self.points.items():
@@ -71,12 +75,19 @@ class influxdb():
     
     def run(self, condition = True, duration = 0):
         x = threading.Thread(target = self.__run, args = (condition, duration), daemon = False)
+        #x = self.__run(condition, duration)
         x.start()
+
+def sin():
+    return math.sin(time())
 
 engine = influxdb()
 engine.add("CPU", "Auslastung", lambda: psutil.cpu_percent(interval = 1))
 engine.add("CPU", "Frequenz", lambda: psutil.cpu_freq().current)
+engine.add("Functions", "sine", sin)
 engine.run()
+while True:
+    pass
 
 #Execute Flux Queries Example
 """
