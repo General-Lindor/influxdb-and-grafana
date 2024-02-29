@@ -5,13 +5,13 @@ Speicherung von Hardware-related Daten in einer zeitbasierten Influx-Datenbank u
 # Wie initialisiere ich das Projekt?
 
 1. Richte dir Influxdb ein, sodass du influxd.exe hast, token, passwort, username, bucket etc. hast
-2. speichere die Daten in einer .env im Folder, folgende Struktur:
-INFLUXDB_USERNAME=myusername
-INFLUXDB_PASSWORD=mypassword
-INFLUXDB_TOKEN=myoken
-INFLUXDB_URL=myurl
-INFLUXDB_ORG=myorg
-INFLUXDB_BUCKET=system_monitoring
+2. speichere die Daten in einer .env im Folder, folgende Struktur:\
+INFLUXDB_USERNAME=myusername\
+INFLUXDB_PASSWORD=mypassword\
+INFLUXDB_TOKEN=myoken\
+INFLUXDB_URL=myurl\
+INFLUXDB_ORG=myorg\
+INFLUXDB_BUCKET=system_monitoring\
 3. starte influx.exe und folge den Anweisungen
 4. You're ready to go: starte einfach nur influxdb.py
 
@@ -61,7 +61,7 @@ Sollte nicht present sein im github, musste selber einrichten
 
 # To-Do-List
 
--Visualisierung + GUI
+-Visualisierung \+ GUI
 -Auswahl der Daten, die gespeichert werden sollen
 -flux language implementation: queries über flux
 -docker?
