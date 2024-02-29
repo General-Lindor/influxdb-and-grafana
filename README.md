@@ -11,7 +11,7 @@ INFLUXDB_PASSWORD=mypassword\
 INFLUXDB_TOKEN=myoken\
 INFLUXDB_URL=myurl\
 INFLUXDB_ORG=myorg\
-INFLUXDB_BUCKET=system_monitoring\
+INFLUXDB_BUCKET=system_monitoring
 3. starte influx.exe und folge den Anweisungen
 4. You're ready to go: starte einfach nur influxdb.py
 
