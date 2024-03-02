@@ -1,5 +1,0 @@
-data = from(bucket: "system_monitoring")
-    |> range(start: -1h)
-    |> filter(fn: (r) => r._measurement == "CPU" and r._field == "Auslastung")")
-    |> mean()
-    |> yield(name: "_results")

@@ -57,7 +57,6 @@ class influxdb():
     
     def add(self, point, field, getter):
         m = merge(self.points, {point : {field : getter}})
-        print(m)
         self.points = m
     
     def tick(self):
@@ -66,7 +65,7 @@ class influxdb():
                 value = getter()
                 influxpoint = Point(point).field(field, value)
                 self.write(influxpoint)
-                print("point: " + repr(point) + ",	field: " + repr(field) + ",	value: " + repr(value))
+                #print("point: " + repr(point) + ",	field: " + repr(field) + ",	value: " + repr(value))
     
     def __run(self, condition, duration):
         while condition:
@@ -81,28 +80,107 @@ class influxdb():
 def sin():
     return math.sin(time())
 
+"""
+>>> import psutil
+>>> psutil.sensors_temperatures()
+{'acpitz': [shwtemp(label='', current=47.0, high=103.0, critical=103.0)],
+ 'asus': [shwtemp(label='', current=47.0, high=None, critical=None)],
+ 'coretemp': [shwtemp(label='Physical id 0', current=52.0, high=100.0, critical=100.0),
+              shwtemp(label='Core 0', current=45.0, high=100.0, critical=100.0)]}
+>>>
+>>> psutil.sensors_fans()
+{'asus': [sfan(label='cpu_fan', current=3200)]}
+>>>
+>>> psutil.sensors_battery()
+sbattery(percent=93, secsleft=16628, power_plugged=False)
+>>>
+"""
+
 engine = influxdb()
-engine.add("CPU", "Auslastung", lambda: psutil.cpu_percent(interval = 1))
-engine.add("CPU", "Frequenz", lambda: psutil.cpu_freq().current)
+engine.add("CPU", "Auslastung", lambda: float(psutil.cpu_percent(interval = 1)))
+engine.add("CPU", "Frequenz", lambda: float(psutil.cpu_freq().current))
+#sensors temperature is currently not implemented on windows
+#engine.add("CPU", "temperature", lambda: psutil.sensors_temperatures()["coretemp"].current)
 engine.add("Functions", "sine", sin)
 engine.run()
-while True:
-    pass
 
 #Execute Flux Queries Example
-"""
-query_api = client.query_api()
+query_api = engine.client.query_api()
 
 ver = "data" # This variable would actually come from a function
 params = {
     "pVersion": ver,
 }
-query =                      '''from(bucket: "db")
-                                |> range(start: -200d)
-                                |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
-                                |> filter(fn: (r) => r._measurement == "test_result")
-                                |> filter(fn: (r) => r.version == pVersion)
-                                |> keep(columns: ["_time", "test", "run", "status_tag", "duration_sec", "version"])'''
+queryAll = '''data = from(bucket: "system_monitoring")
+    |> range(start: -15m)
+    |> filter(fn: (r) => (r._measurement == "CPU") and ((r._field == "Auslastung") or (r._field == "Frequenz")))
+    |> group(columns: ["_field"], mode: "by")
+    |> keep(columns: ["_time", "_field", "_value"])
+    |> yield(name: "_results") |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
 
-df = query_api.query_data_frame(query=query, params=params)
-"""
+queryA = '''data = from(bucket: "system_monitoring")
+    |> range(start: -15m)
+    |> filter(fn: (r) => (r._measurement == "CPU") and (r._field == "Auslastung"))
+    |> keep(columns: ["_time", "_field", "_value"])
+    |> yield(name: "_resultsA") |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
+
+queryF = '''data = from(bucket: "system_monitoring")
+    |> range(start: -15m)
+    |> filter(fn: (r) => (r._measurement == "CPU") and (r._field == "Frequenz"))
+    |> keep(columns: ["_time", "_field", "_value"])
+    |> yield(name: "_resultsF") |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")'''
+
+import matplotlib.pyplot as plot
+import pandas
+
+
+def normalize_df(df):
+    return df/df.iloc[0,:]
+
+def numerize(data):
+    try:
+        return pandas.to_numeric(data)
+    except Exception as e:
+        try:
+            return float(data)
+        except Exception as ex:
+            return data
+
+#fig, ((ax1, ax2)) = plot.subplots(ncols=2, nrows=1, figsize=(15, 6))
+fig, ((ax1, ax2)) = plot.subplots(ncols=2, nrows=1)
+
+ax1.set_xlabel("Zeit", fontsize=12)
+ax1.set_ylabel("CPU-Auslastung", fontsize=12)
+
+ax2.set_xlabel("Zeit", fontsize=12)
+ax2.set_ylabel("CPU-Frequenz", fontsize=12)
+
+plot.title('System Monitoring')
+plot.legend(loc='upper left', fontsize=12)
+plot.tight_layout()
+plot.style.use('bmh')
+plot.grid(True)
+
+while True:
+    try:
+        ax1.clear()
+        ax2.clear()
+        
+        dfA = query_api.query_data_frame(query=queryA, params=params)
+        dfF = query_api.query_data_frame(query=queryF, params=params)
+        
+        dfA = dfA.drop(columns=["result", "table", "_field"])
+        dfF = dfF.drop(columns=["result", "table", "_field"])
+        
+        dfA = dfA.set_index("_time")
+        dfF = dfF.set_index("_time")
+        
+        dfA.apply(numerize)
+        dfF.apply(numerize)
+        
+        ax1.plot(dfA)
+        ax2.plot(dfF)
+    except Exception as e:
+        print(e)
+    plot.pause(0.1)
+    #sleep(0.1)
