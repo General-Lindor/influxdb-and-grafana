@@ -13,9 +13,12 @@ INFLUXDB_TOKEN=myoken\
 INFLUXDB_URL=myurl\
 INFLUXDB_ORG=myorg\
 INFLUXDB_BUCKET=system_monitoring
-3. pip install pandas
-4. starte influx.exe und folge den Anweisungen
-5. You're ready to go: starte einfach nur influxdb.py
+3. pip install matplotlib
+4. pip install influxdb-client
+5. pip install python-dotenv
+6. pip install pandas
+7. starte influx.exe und folge den Anweisungen
+8. You're ready to go: starte einfach nur influxdb.py
 
 # Was machen die einzelnen files?
 
