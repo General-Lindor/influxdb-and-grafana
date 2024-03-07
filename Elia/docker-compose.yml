@@ -1,0 +1,40 @@
+version: '2'
+services:
+  influxdb:
+    image: influxdb:2.7.5
+    ports:
+      - '8086:8086'
+    networks:
+      - my_network
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USERNAME}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET}
+      - DOCKER_INFLUXDB_INIT_RETENTION=${INFLUXDB_RETENTION}
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_TOKEN}
+  grafana:
+    image: grafana/grafana:10.0.12
+    ports:
+      - '3001:3000'
+    networks:
+      - my_network
+    volumes:
+      - ./grafana-provisioning/:/etc/grafana/provisioning
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+  sensor_app:
+    build: .
+    depends_on:
+      - influxdb
+    networks:
+      - my_network
+    volumes:
+      - .:/sensor_app
+
+networks:
+  my_network:
