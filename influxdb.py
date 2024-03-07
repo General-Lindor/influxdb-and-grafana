@@ -43,17 +43,30 @@ class influxdb():
     def __init__(self):
         os.system(os.path.join(__location__(), "influx.bat"))
         #os.system("C:/users/admin/Desktop/influx.bat")
+        
         load_dotenv()
+        self.URL = os.getenv("INFLUXDB_URL")
         self.BUCKET = os.getenv("INFLUXDB_BUCKET")
-        self.client = InfluxDBClient(url = os.getenv("INFLUXDB_URL"), token = os.getenv("INFLUXDB_TOKEN"), org = os.getenv("INFLUXDB_ORG"))
+        self.TOKEN = os.getenv("INFLUXDB_TOKEN")
+        self.ORG = os.getenv("INFLUXDB_ORG")
+        
+        self.client = InfluxDBClient(url = self.URL, token = self.TOKEN, org = self.ORG)
         self.write_api = self.client.write_api()
+        self.delete_api = self.client.delete_api()
+        self.query_api = self.client.query_api()
         
         #structure: {point  : {field  : getter}}
         #types:     {string : {string : lambda}}
         self.points = {}
     
+    def query(self, q):
+        return self.query_api.query(query = q)
+    
     def write(self, influxpoint):
         self.write_api.write(bucket = self.BUCKET, record = influxpoint)
+    
+    def delete(self, measurement, field, start, end):
+        delete_api.delete(start, "now()", f'_measurement={measurement}', bucket = self.BUCKET, org = self.ORG)
     
     def add(self, point, field, getter):
         m = merge(self.points, {point : {field : getter}})
@@ -105,7 +118,7 @@ engine.add("Functions", "sine", sin)
 engine.run()
 
 #Execute Flux Queries Example
-query_api = engine.client.query_api()
+query_api = engine.query_api
 
 ver = "data" # This variable would actually come from a function
 params = {
