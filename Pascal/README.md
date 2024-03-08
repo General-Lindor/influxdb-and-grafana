@@ -63,7 +63,5 @@ Sollte nicht present sein im github, musste selber einrichten
 
 # To-Do-List
 
-- Auswahl der Daten, die gespeichert werden sollen
-- flux language implementation: queries über flux
-- docker?
 - Warum werden die Labels \/ Achsenbeschriftungen nicht angezeit? Warum ist der Titel "Figure 1"? Fix That PLS.
+- Alte Daten, die nicht mehr gebraucht werden, löschen
