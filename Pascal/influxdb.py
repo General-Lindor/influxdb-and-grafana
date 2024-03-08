@@ -41,7 +41,7 @@ __location__ = lambda: os.path.realpath(os.path.join(os.getcwd(), os.path.dirnam
 ftype = type(lambda: 3)
 class influxdb():
     def __init__(self):
-        os.system(os.path.join(__location__(), "influx.bat"))
+        os.system(os.path.join(__location__(), "startDB.bat"))
         #os.system("C:/users/admin/Desktop/influx.bat")
         
         load_dotenv()

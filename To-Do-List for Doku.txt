@@ -1,0 +1,33 @@
+DONE:
+    - Doku allgemein:
+        - was ist influxdb?
+    - Doku Elia:
+    - Doku Pascal:
+
+TO-DO:
+    - Doku allgemein:
+        - explain influxdb versions / setup
+        - explain security (RSA)
+        - explain flux
+            - CREATE: existiert nicht
+            - DELETE: existiert nicht
+            - INSERT: existiert nicht
+            - SELECT: existiert als FROM, FILTER, KEEP, YIELD
+            - GROUP BY: existiert als GROUP
+            - DROP: existiert als DROP
+            - DATA MANIPULATION: existiert z.B. als PIVOT, MEAN, ...
+            - what's up with that javascript stuff? v3 only or what?
+    - Doku Elia
+        - wie funktioniert docker?
+        - '' Grafana?
+        - '' influsdb im browser?
+    - Doku Pascal
+        - wie funktioniert die Installation?
+        - '' das Reinschreiben in die Datenbank?
+        - '' das Plotten?
+        - '' das Löschen von alten Daten?
+
+WON'T BE DONE:
+    - Doku allgemein:
+    - Doku Elia:
+    - Doku Pascal:
