@@ -57,7 +57,7 @@ Mit Flux kann man keine Struktur vorgeben, keine Daten einfügen oder löschen u
 Äquivalente Befehle zu CREATE, INSERT oder DELETE existieren nicht.
 Dafür bietet Flux jedoch breite Funktionalität im Bereuch Datenanalyse.
 
-## <a name="fifth">$${\color{blue}Typischer \space Aufbau \space einer \space Flux \space Query}$$
+## <a name="fifth"></a>$${\color{blue}Typischer \space Aufbau \space einer \space Flux \space Query}$$
 
 Eine typische Flux query ist folgendermaßen aufgebaut:
 ```
