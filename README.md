@@ -96,7 +96,8 @@ Entfernt eine spezifische Spalte aus der Output-Tabelle des yield-Befehles.
 ### mean()
 Berechnet den Durchschnitt der Daten
 
-## <a name="sixth"></a><$${\color{blue}Wie kann man Daten schreiben und löschen?}$$
+## <a name="sixth"></a>$${\color{blue}Wie kann man Daten schreiben und löschen?}$$
+$${\color{blue}Blue}$$
 
 InfluxDB arbeitet über das http-Protokoll. Über http-GET- und http-POST-Methoden können Daten geschrieben und gelöscht werden.
 Dabei existieren verschiedene libraries in verschiedenen Programmiersprachen, welche das Ganze vereinfachen.
