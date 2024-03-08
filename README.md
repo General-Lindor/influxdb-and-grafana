@@ -5,10 +5,12 @@
 
 ## Inhaltsverzeichnis
 1. [Was ist InfluxDB?](#first)
-2. [Platzhalter](#second)
-3. [Platzhalter](#third)
-4. [Platzhalter](#fourth)
-5. [Platzhalter](#fifth)
+2. [Wie speichert InfluxDB Daten?](#second)
+3. [Wie sieht es mit der Sicherheit aus?](#third)
+4. [Was ist Flux?](#fourth)
+5. [Typischer Aufbau einer Flux-Query](#fifth)
+6. [Wie kann man Daten schreiben und löschen?](#sixth)
+7. [Hurwitz?](#seventh)
 
 ---
 
@@ -18,26 +20,36 @@ InfluxDB ist ein Datenbankmanagementsystem (DBMS), das sich auf Time-Series-Date
 Neben seiner Kernfunktionalität als TSDB bietet InfluxDB auch eine webbasierte Benutzeroberfläche zur Datenerfassung und -visualisierung an.
 Darüber hinaus führt es die neue Programmiersprache Flux ein.
 Es existieren mehrere Versionen, dabei existiert auch eine kostenlose Open-Source-Version.
+Bevor man irgendwas machen kann, muss man die Datenbank allerdings starten.
+Und zwar jedes Mal.
+Dafür steht eine .exe zur Verfügung.
 
-## Wie speichert InfluxDB Daten?
+## <a name="second"></a>Wie speichert InfluxDB Daten?
 
 ### BUCKET
+≙SQL-Datenbank
 
 ### _measurement
+≙SQL-Tabelle
 
 ### _field
+≙SQL-Spalte
 
 ### _time
+Zeit
 
-## Wie sieht es mit der Sicherheit aus?
+## <a name="third"></a>Wie sieht es mit der Sicherheit aus?
 
 ### Token
+RSA
 
 ### Username
+Man muss sich anmelden, bevor man Zugriffsrechte erhält.
 
 ### Password
+Man muss sich anmelden, bevor man Zugriffsrechte erhält.
 
-## <a name="second"></a>Was ist Flux?
+## <a name="fourth"></a>Was ist Flux?
 
 Flux ist das SQL von InfluxDB.
 Während SQL jedoch gleichzeitig eine DDL (Data Definition Language), DML (Data Manipulation Language), DCL (Data Control Language) und TCL (Transaction Control Protocol) ist,
@@ -46,29 +58,49 @@ Mit Flux kann man keine Struktur vorgeben, keine Daten einfügen oder löschen u
 Äquivalente Befehle zu CREATE, INSERT oder DELETE existieren nicht.
 Dafür bietet Flux jedoch breite Funktionalität im Bereuch Datenanalyse.
 
-## <a name="third"></a>Aufbau einer Flux-Query?
+## <a name="fifth"></a>Typischer Aufbau einer Flux-Query
 
 Eine typische Flux query ist folgendermaßen aufgebaut:
 ```
+data = from(bucket: "system_monitoring")
+    |> range(start: -15m)
+    |> filter(fn: (r) => (r._measurement == "CPU") and ((r._field == "Auslastung") or (r._field == "Frequenz")))
+    |> group(columns: ["_field"], mode: "by")
+    |> keep(columns: ["_time", "_field", "_value"])
+    |> yield(name: "_results")
+    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
 ```
 
-### Filter
+Gehen wir die verschiedenen Befehle durch:
 
-### Yield
+### range
+Entspricht dem WHERE-Teil des SELECT-Statements
 
-### Keep
+### filter
+Entspricht dem Spalten-Teil und dem FROM-Teil des SELECT-Statements
 
-### GROUP
+### yield
+sorgt dafür, dass die Daten ausgegeben werden.
+Alles, was danach mit den Daten passiert (außer pivot) hat keinen Einfluss auf den Output.
+Sollte in jeder Flux-Query vorhanden sein.
 
-### DROP
+### keep
+Alle Spalten außer die genannten werden beim yield-Befehl ignoriert.
 
-### PIVOT
+### group
 
-### MEAN
+### drop
+Entfernt eine spezifische Spalte aus der Output-Tabelle des yield-Befehles.
 
-## <a name="fourth"></a>Wie kann man Daten schreiben und löschen?
+### pivot
+
+### mean()
+Berechnet den Durchschnitt der Daten
+
+## <a name="sixth"></a>Wie kann man Daten schreiben und löschen?
 
 InfluxDB arbeitet über das http-Protokoll. Über http-GET- und http-POST-Methoden können Daten geschrieben und gelöscht werden.
 Dabei existieren verschiedene libraries in verschiedenen Programmiersprachen, welche das Ganze vereinfachen.
 
-## <a name="fifth"></a>Hurwitz?
+## <a name="seventh"></a>Hurwitz?
+Zeta-Funktion
