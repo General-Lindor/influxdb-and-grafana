@@ -1,4 +1,4 @@
-## <a name="first"></a>$${\color{teal} \underline{\mathbf{InfluxDB \space \& \space Flux}}}$$
+## <a name="first"></a>$${\color{teal} \underline{\mathbf{InfluxDB \space und \space Flux}}}$$
 <p>von $${\color{teal} Pascal \space Pahl}$$ und $${\color{teal} Daniele-Elia \space Stock}$$</p>
 
 ---
