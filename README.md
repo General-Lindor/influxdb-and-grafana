@@ -1,9 +1,9 @@
-# InfluxDB & Flux
-<p>by Pascal Pahl und Daniele-Elia Stock</p>
+## <a name="first"></a>$${\color{teal} \underline{\mathbf{InfluxDB \space & \space Flux}}}$$
+<p>von $${\color{teal} Pascal \space Pahl}$$ und $${\color{teal} Daniele-Elia \space Stock}$$</p>
 
 ---
 
-## $${\color{blue}Inhaltsverzeichnis}$$
+## $${\color{teal}Inhaltsverzeichnis}$$
 1. [Was ist InfluxDB?](#first)
 2. [Wie speichert InfluxDB Daten?](#second)
 3. [Wie sieht es mit der Sicherheit aus?](#third)
@@ -13,7 +13,7 @@
 
 ---
 
-## <a name="first"></a>$${\color{blue}Was \space ist \space InfluxDB?}$$
+## <a name="first"></a>$${\color{teal}Was \space ist \space InfluxDB?}$$
 
 InfluxDB ist ein Datenbankmanagementsystem (DBMS), das sich auf Time-Series-Datenbanken (TSDB) spezialisiert hat.
 Neben seiner Kernfunktionalität als TSDB bietet InfluxDB auch eine webbasierte Benutzeroberfläche zur Datenerfassung und -visualisierung an.
@@ -23,7 +23,7 @@ Bevor man irgendwas machen kann, muss man die Datenbank allerdings starten.
 Und zwar jedes Mal.
 Dafür steht eine .exe zur Verfügung.
 
-## <a name="second"></a>$${\color{blue}Wie \space speichert \space InfluxDB \space Daten?}$$
+## <a name="second"></a>$${\color{teal}Wie \space speichert \space InfluxDB \space Daten?}$$
 
 ### BUCKET
 ≙SQL-Datenbank
@@ -37,7 +37,7 @@ Dafür steht eine .exe zur Verfügung.
 ### _time
 Zeit
 
-## <a name="third"></a>$${\color{blue}Wie \space sieht \space es \space mit \space der \space Sicherheit \space aus?}$$
+## <a name="third"></a>$${\color{teal}Wie \space sieht \space es \space mit \space der \space Sicherheit \space aus?}$$
 
 ### Token
 RSA
@@ -48,7 +48,7 @@ Man muss sich anmelden, bevor man Zugriffsrechte erhält.
 ### Password
 Man muss sich anmelden, bevor man Zugriffsrechte erhält.
 
-## <a name="fourth"></a>$${\color{blue}Was \space ist \space Flux?}$$
+## <a name="fourth"></a>$${\color{teal}Was \space ist \space Flux?}$$
 
 Flux ist das SQL von InfluxDB.
 Während SQL jedoch gleichzeitig eine DDL (Data Definition Language), DML (Data Manipulation Language), DCL (Data Control Language) und TCL (Transaction Control Protocol) ist,
@@ -57,7 +57,7 @@ Mit Flux kann man keine Struktur vorgeben, keine Daten einfügen oder löschen u
 Äquivalente Befehle zu CREATE, INSERT oder DELETE existieren nicht.
 Dafür bietet Flux jedoch breite Funktionalität im Bereuch Datenanalyse.
 
-## <a name="fifth"></a>$${\color{blue}Typischer \space Aufbau \space einer \space Flux \space Query}$$
+## <a name="fifth"></a>$${\color{teal}Typischer \space Aufbau \space einer \space Flux \space Query}$$
 
 Eine typische Flux query ist folgendermaßen aufgebaut:
 ```
@@ -96,7 +96,7 @@ Entfernt eine spezifische Spalte aus der Output-Tabelle des yield-Befehles.
 ### mean()
 Berechnet den Durchschnitt der Daten
 
-## <a name="sixth"></a>$${\color{blue}Wie \space kann \space man \space Daten \space schreiben \space und \space löschen?}$$
+## <a name="sixth"></a>$${\color{teal}Wie \space kann \space man \space Daten \space schreiben \space und \space löschen?}$$
 
 InfluxDB arbeitet über das http-Protokoll. Über http-GET- und http-POST-Methoden können Daten geschrieben und gelöscht werden.
 Dabei existieren verschiedene libraries in verschiedenen Programmiersprachen, welche das Ganze vereinfachen.
