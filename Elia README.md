@@ -87,7 +87,7 @@ Die InfluxDB-Weboberfläche ermöglicht das Schreiben sowohl mit dem "Line Proto
 > ##### *Syntax Beispiel*
 >
 > 
-> ![alt](images\line.png)<br><br>
+> ![alt](images/line.png)<br><br>
 
 ### InfluxDB CLI
 Die CLI ist einfach zu bedienen und perfekt für Entwickler, die normalerweise nicht GUIs bevorzugen.
@@ -95,7 +95,7 @@ Die CLI ist einfach zu bedienen und perfekt für Entwickler, die normalerweise n
 *Beispiel:*
 > <br>Die ID vom Bucket in den geschrieben werden soll mithilfe dem Befehl ``` influx bucket list ``` herrausfinden.
 > 
-> ![alt](images\bucket_list.png)
+> ![alt](images/bucket_list.png)
 > <sup>*Da der Bucket & Organisations Name Special Chars beinhalten kann & mutable sind wird die ID verwendet*</sub>
 > 
 > Jetzt können wir mit dem Befehl ``` influx write ``` & dem Line Protocol Daten in den Bucket schreiben. 
@@ -127,14 +127,14 @@ Die CLI ist einfach zu bedienen und perfekt für Entwickler, die normalerweise n
 Mithilfe der Funktionen csv.from() oder array.from() kann ein annotiertes CSV generiert und anschließend mit der Funktion to() in die InfluxDB geschrieben werden.
 
 > <br><sup> In diesem Beispiel importeren wir erst Sample Daten von InfluxDB und schreiben diese dann in den Bucket "WEATHER"</sup><br>
-> ![alt](images\flux_write.png)<br>
+> ![alt](images/flux_write.png)<br>
 > <br>
 
 ### Client-Bibliotheken
 InfluxDB bietet 13 Client-Bibliotheken zur Auswahl an. Darunter Python, C#, Java, und mehr.
 
 > <br><sup>Beispiel mit Python</sup><br>
-> ![alt](images\py_sample.png)
+> ![alt](images/py_sample.png)
 > <br><br>
 
 ### Telegraf
@@ -142,15 +142,15 @@ Mit dem Plugin-System von Telegraf & den über 200 Plugins lassen sich schnell A
 
 > <br>Beispiel <br><br>
 > Als aller erstet muss das gewünschte Plugin gewählt werden. Um das Beispiel einfach zu halten benutzten wir das System Plugin da dies keine zusätlichen Konfigurationen braucht.<br>
-> ![alt](images\telegraf_1.png)<br>
+> ![alt](images/telegraf_1.png)<br>
 > <br><br>Nach dem das Plugin ausgewählt wurde können wir das Plugin im Normalfall konfigurieren.<br>
-> ![alt](images\telegraf_2.png)<br>
+> ![alt](images/telegraf_2.png)<br>
 > <br>Nun müssen wir unsere INFLUX_TOKEN Variable mit ```SET INFLUX_TOKEN=<TOKEN>``` oder ```export INFLUX_TOKEN=<TOKEN>``` setzten & danach Telegaf mit der im vorherigen erstellten Config start. ```telegraf --config http://localhost:8086/api/v2/telegrafs/<CONFIG_ID>```
-> ![alt](images\telegraf_3.png)<br>
-> ![alt](images\telegraf_4.png)<br>
+> ![alt](images/telegraf_3.png)<br>
+> ![alt](images/telegraf_4.png)<br>
 > <br><br>Nun werden automatisch über Telegraf Daten in unseren System Bucket geschieben<br>
-> ![alt](images\telegraf_5.png)<br>
-> ![alt](images\telegraf_6.png)<br>
+> ![alt](images/telegraf_5.png)<br>
+> ![alt](images/telegraf_6.png)<br>
 
 # Flux
 
@@ -206,12 +206,12 @@ Einer der häufigsten Anwendungsfälle für InfluxDB-Tasks besteht darin, Daten 
 > 3. aggregateWindow(every: 10m, fn: mean) - Wird reduzieren die Daten auf ein 10 Minuten Fenster und ermitteln dafür den Mittelwert. 
 > 4. to(bucket: "Weather_Downsample") - Der Bucket in dem wir die Daten archivieren wollen.
 > 
->![alt](images\tasks_1.png)
+>![alt](images/tasks_1.png)
 >
 >Wie man sieht haben unsere airSensoren in der letzten Stunde 8640 Datensätze produziert.
->![alt](images\tasks_2.png)
->![alt](images\tasks_3.png)
+>![alt](images/tasks_2.png)
+>![alt](images/tasks_3.png)
 >
 >Nach dem wir unser Tasks ausgeführt haben sich unsere Datensätze auf 144 reduziert.
->![alt](images\tasks_4.png)
->![alt](images\tasks_5.png)
+>![alt](images/tasks_4.png)
+>![alt](images/tasks_5.png)
