@@ -1,0 +1,18 @@
+- Sample Data
+
+https://github.com/influxdata/influxdb2-sample-data/blob/master/air-sensor-data/air-sensor-data.lp
+
+import "influxdata/influxdb/sample"
+
+sample.data(set: "airSensor")
+    |> to(bucket: "Weather")
+
+#########################################
+
+- Task
+
+from(bucket: "Weather")
+    |> range(start: -7d)
+    |> filter(fn: (r) => r._measurement == "airSensors")
+    |> aggregateWindow(every: 10m, fn: mean)
+    |> to(bucket: "Weather_Downsample")
