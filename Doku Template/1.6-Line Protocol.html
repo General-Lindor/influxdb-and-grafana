@@ -35,12 +35,15 @@
                 <a href="3-Tasks.html">Tasks</a>
             </nav>
         </header>
-        <h1>Was ist eigentlich influxDB?</h1>
+        <h1>influxDB Line Protocol</h1>
         <p>
-            InfluxDB ist ein Datenbankmanagementsystem (DBMS), das sich auf Time-Series-Datenbanken (TSDB) spezialisiert hat.
-            Neben seiner Kernfunktionalität als TSDB bietet InfluxDB auch eine webbasierte Benutzeroberfläche zur Datenerfassung und -visualisierung an.
-            Darüber hinaus führt es die neue Programmiersprache Flux ein.
-            Es existieren mehrere Versionen, dabei existiert auch eine kostenlose Open-Source-Version.
+            Die InfluxDB-Weboberfläche ermöglicht das direkte Schreiben von Daten in die Datenbank, ohne dass Code geschrieben oder Tools verwendet werden müssen.
+            Dies ist sehr nützlich für Prototyping- und Testzwecke.
         </p>
+        <p>
+            Es handelt sich um ein textbasiertes Format, welches das Measurement, die Tags, das Field und den Timestamp eines Datenpunkts angibt.
+        </p>
+        <h2>Syntax Beispiel:</h2>
+        <img src="img/line.png"></img>
     </body>
 </html>

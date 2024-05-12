@@ -15,37 +15,32 @@
     <body>
         <header class="header">
             <a href="#" class="logo"><img src="img/influxdb_logo.svg" alt=""></a>
-
             <i class='bx bx-menu' id="menu-icon"></i>
-
             <nav class="navbar">
                 <a href="0-influxDB.html" class="active">influxDB</a>
-                <a href="1-Tools.html">Tools</a>
-                <a href="2-Datenelemente.html">Datenelemente</a>
-                <a href="3-Daten schreiben.html">Daten schreiben</a>
-                <a href="4-Daten lesen.html">Daten lesen</a>
-                <a href="5-Flux Query Language.html">Flux Query Language</a>
-                <a href="6-Tasks.html">Tasks</a>
-                <!--
-                    <div class="dropdown">
-                        <a href="#admin-page" class="dropbtn">
-                            Admin Page
-            
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="#zeiterfassungsverwaltung">Zeiterfassungsverwaltung</a>
-                            <a href="#personalverwaltung">Personalverwaltung</a>
-                            <a href="#rollenverwaltung">Rollenverwaltung</a>
-                        </div>
+                <div class="dropdown">
+                    <a href="1-Tools.html" class="dropbtn">Tools</a>
+                    <div class="dropdown-content">
+                        <a href="1.0-Flux.html">Flux Query Language</a>
+                        <a href="1.1-UI.html">influxDB UI</a>
+                        <a href="1.2-CLI.html">influxDB CLI (Command Line Interface)</a>
+                        <a href="1.3-REST-API.html">influxDB REST API</a>
+                        <a href="1.4-Client-Bibliotheken.html">influxDB-Client-Bibliotheken</a>
+                        <a href="1.5-Task Engine.html">influxDB Task Engine</a>
+                        <a href="1.6-Line Protocol.html">influxDB Line Protocol</a>
+                        <a href="1.7-Telegraf.html">influxDB Telegraf</a>
                     </div>
-                -->
+                </div>
+                <a href="2-Datenelemente.html">Datenelemente</a>
+                <a href="3-Tasks.html">Tasks</a>
             </nav>
         </header>
+        <h1>Datenelemente von influxDB</h1>
         <p>
             Datenelemente sind so etwas wie das influxDB-Äquivalent zu Datenbanken, Tabellen, Spalten u. Reihen in SQL.
             Sie sagen etwas über die Datenstruktur aus und sind für Lese- und Schreibzugriffe von elementarer Bedeutung.
         </p>
-        <h3>Bucket</h3>
+        <h2>Bucket</h2>
         <p>
             Alle Daten in InfluxDB werden in sogenannten Buckets geschriben.
             Ein Bucket ist ein Container, der so viele Measurements wie gewünscht speichern kann.
@@ -53,7 +48,7 @@
             Des Weiteren muss beim Erstellen eines Buckets eine Aufbewahrungsfrist (Retention Period) festgelegt werden. Diese bestimmt, wie lange die Daten in einem Bucket gespeichert werden.
         </p>
 
-        <h3>Measurement</h3>
+        <h2>Measurement</h2>
         <p>
             Measurements sind die höchste Datenstruktur innerhalb eines Buckets.
             Sie können wie Tabellen in einer traditionellen SQL-Datenbank betrachtet werden.
@@ -67,7 +62,7 @@
             Für diesen Fall könnten Sie ein Measurement namens "air_temperature" erstellen und ein zweites Measurement z.B. "water_temperature".
         </p>
 
-        <h3>Tag</h3>
+        <h2>Tag</h2>
         <p>
             Ein Tag besteht aus einem Key-Value-Pair und enthält wichtige Metadaten.
             Diese beinhalten typischerweise Informationen über die Datenquelle.
@@ -80,7 +75,7 @@
             In diesem Fall könnten Sie einen Tag mit dem Schlüssel "location" erstellen, wobei die Tag-Werte die jeweiligen Standorte wie "Berlin", "Hamburg", "Köln". ... enthalten.
         </p>
 
-        <h3>Field</h3>
+        <h2>Field</h2>
         <p>
             Ein Field besteht aus einem Key-Value-Paar und enthält die tatsächlichen Daten, die gespeichert, visualisiert und für Berechnungen usw. verwendet werden.
         </p>
@@ -92,7 +87,7 @@
             In diesem Fall könnten Sie einen Field mit dem Schlüssel "temperature", "humidity" oder z.B. "co2" erstellen werden, wobei die Field-Werte die tatsächlichen Messwerte enthalten.
         </p>
 
-        <h3>Timestamp</h3>
+        <h2>Timestamp</h2>
         <p>
             Ein Zeitstempel, der mit den Daten verknüpft ist.
         </p>

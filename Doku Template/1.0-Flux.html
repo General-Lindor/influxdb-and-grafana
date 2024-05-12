@@ -35,12 +35,21 @@
                 <a href="3-Tasks.html">Tasks</a>
             </nav>
         </header>
-        <h1>Was ist eigentlich influxDB?</h1>
+        <h1>Flux</h1>
         <p>
-            InfluxDB ist ein Datenbankmanagementsystem (DBMS), das sich auf Time-Series-Datenbanken (TSDB) spezialisiert hat.
-            Neben seiner Kernfunktionalität als TSDB bietet InfluxDB auch eine webbasierte Benutzeroberfläche zur Datenerfassung und -visualisierung an.
-            Darüber hinaus führt es die neue Programmiersprache Flux ein.
-            Es existieren mehrere Versionen, dabei existiert auch eine kostenlose Open-Source-Version.
+            Flux ist eine funktionale Skriptsprache, die darauf ausgelegt ist, Abfragen, Daten-Transformation, Analyse und das Reagieren auf Daten in einer einzigen Syntax zu vereinen.
         </p>
+        <ul>
+            <li>Daten transformieren und analysieren</li>
+            <li>Tasks schreiben</li>
+            <li>...</li>
+        </ul>
+        <p>
+            Mithilfe der Funktionen csv.from() oder array.from() kann ein annotiertes CSV generiert und anschließend mit der Funktion to() in die InfluxDB geschrieben werden.
+        </p>
+        <p>
+            Beispiel:<br>In diesem Beispiel importeren wir erst Sample Daten von InfluxDB und schreiben diese dann in den Bucket "WEATHER"
+        </p>
+        <img src="img/flux_write.png"></img>
     </body>
 </html>

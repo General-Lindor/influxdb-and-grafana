@@ -35,12 +35,25 @@
                 <a href="3-Tasks.html">Tasks</a>
             </nav>
         </header>
-        <h1>Was ist eigentlich influxDB?</h1>
+        <h1>Rest API</h1>
         <p>
-            InfluxDB ist ein Datenbankmanagementsystem (DBMS), das sich auf Time-Series-Datenbanken (TSDB) spezialisiert hat.
-            Neben seiner Kernfunktionalität als TSDB bietet InfluxDB auch eine webbasierte Benutzeroberfläche zur Datenerfassung und -visualisierung an.
-            Darüber hinaus führt es die neue Programmiersprache Flux ein.
-            Es existieren mehrere Versionen, dabei existiert auch eine kostenlose Open-Source-Version.
+            InfluxDB ist vollständig in eine REST-API integriert.
+            Die API ermöglicht natürlich das Schreiben und Abfragen von Daten, bietet aber auch alles, was zur Verwaltung der Datenbank benötigt wird, einschließlich der Erstellung von Ressourcen wie Authentifizierungstoken, Buckets, Benutzern usw.
+        </p>
+        <p>
+            Über die API hat man die vollständige Kontrolle über Schreib- und Abfragevorgänge in InfluxDB und es werden mehr Funktionen angeboten als über die UI, CLI oder Client-Bibliotheken.
+        </p>
+        <p>
+            Um Daten im Line Protocol Format an InfluxDB mit der API v2 zu schreiben, benutzt man einen POST-Request:
+        </p>
+        <code>
+            curl -X POST 'http://127.0.0.1:8086/api/v2/write?bucket=WEATHER&precision=ns&orgID=d55d7051cce44707'<br>
+            -H"Authorization: Token &#60;TOKEN&#62;"<br>
+            -H 'accept: application/json'<br>
+            -d 'airSensors,sensor_id=TLM0101 temperature=71.83125302870145,humidity=34.87843425604827,co=0.5177653332811699'
+        </code>
+        <p>
+            Wichtig ist hier die Query-Paramenter in der URL richtig zu bennen.
         </p>
     </body>
 </html>
