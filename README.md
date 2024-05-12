@@ -10,8 +10,7 @@
 2. [Wie speichert InfluxDB Daten?](#second)
 3. [Wie sieht es mit der Sicherheit aus?](#third)
 4. [Was ist Flux?](#fourth)
-5. [Typischer Aufbau einer Flux-Query](#fifth)
-6. [Wie kann man Daten schreiben und löschen?](#sixth)
+5. [Wie kann man Daten schreiben und löschen?](#fifth)
 
 ---
 
@@ -66,53 +65,8 @@ Mit Flux kann man keine Struktur vorgeben, keine Daten einfügen oder löschen u
 Äquivalente Befehle zu CREATE, INSERT oder DELETE existieren nicht.
 Dafür bietet Flux jedoch breite Funktionalität im Bereuch Datenanalyse.
 
-## <a name="fifth"></a>$${\color{teal}Typischer \space Aufbau \space einer \space Flux \space Query}$$
-
-Eine typische Flux query ist folgendermaßen aufgebaut:
-
-```flux
-data = from(bucket: "system_monitoring")
-    |> range(start: -15m)
-    |> filter(fn: (r) => (r._measurement == "CPU") and ((r._field == "Auslastung") or (r._field == "Frequenz")))
-    |> group(columns: ["_field"], mode: "by")
-    |> keep(columns: ["_time", "_field", "_value"])
-    |> yield(name: "_results")
-    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
-```
-
-Gehen wir die verschiedenen Befehle durch:
-
-### range
-
-Entspricht dem WHERE-Teil des SELECT-Statements
-
-### filter
-
-Entspricht dem Spalten-Teil und dem FROM-Teil des SELECT-Statements
-
-### yield
-
-sorgt dafür, dass die Daten ausgegeben werden.
-Alles, was danach mit den Daten passiert (außer pivot) hat keinen Einfluss auf den Output.
-Sollte in jeder Flux-Query vorhanden sein.
-
-### keep
-
-Alle Spalten außer die genannten werden beim yield-Befehl ignoriert.
-
-### group
-
-### drop
-
-Entfernt eine spezifische Spalte aus der Output-Tabelle des yield-Befehles.
-
-### pivot
-
-### mean()
-
-Berechnet den Durchschnitt der Daten
-
-## <a name="sixth"></a>$${\color{teal}Wie \space kann \space man \space Daten \space schreiben \space und \space löschen?}$$
+## <a name="fifth"></a>$${\color{teal}Wie \space kann \space man \space Daten \space schreiben \space und \space löschen?}$$
 
 InfluxDB arbeitet über das http-Protokoll. Über http-GET- und http-POST-Methoden können Daten geschrieben und gelöscht werden.
-Dabei existieren verschiedene libraries in verschiedenen Programmiersprachen, welche das Ganze vereinfachen.
+Dabei werden im Hintergrung immer Flux-Queries ausgeführt.
+Es existieren verschiedene libraries in verschiedenen Programmiersprachen, welche das Ganze vereinfachen.
