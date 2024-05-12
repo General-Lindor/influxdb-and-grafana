@@ -154,9 +154,64 @@ Mit dem Plugin-System von Telegraf & den über 200 Plugins lassen sich schnell A
 
 # Flux
 
-!TODO
+Flux ist das SQL von InfluxDB. Während SQL jedoch gleichzeitig eine DDL (Data Definition Language), DML (Data Manipulation Language), DCL (Data Control Language) und TCL (Transaction Control Protocol) ist, ist Flux eine reine Data Query Language. Mit Flux kann man keine Struktur vorgeben, keine Daten einfügen oder löschen und keine Zugriffsrechte manipulieren. Äquivalente Befehle zu CREATE, INSERT oder DELETE existieren nicht. Dafür bietet Flux jedoch breite Funktionalität im Bereuch Datenanalyse.
+
+### Typischer Aufbau einer Flux Query
+Eine typische Flux query ist folgendermaßen aufgebaut:
+```
+data = from(bucket: "system_monitoring")
+    |> range(start: -15m)
+    |> filter(fn: (r) => (r._measurement == "CPU") and ((r._field == "Auslastung") or (r._field == "Frequenz")))
+    |> group(columns: ["_field"], mode: "by")
+    |> keep(columns: ["_time", "_field", "_value"])
+    |> yield(name: "_results")
+    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+```
+
+Gehen wir die verschiedenen Befehle durch:
+
+### range
+Entspricht dem WHERE-Teil des SELECT-Statements
+
+### filter
+Entspricht dem Spalten-Teil und dem FROM-Teil des SELECT-Statements
+
+### yield
+sorgt dafür, dass die Daten ausgegeben werden. Alles, was danach mit den Daten passiert (außer pivot) hat keinen Einfluss auf den Output. Sollte in jeder Flux-Query vorhanden sein.
+
+### keep
+Alle Spalten außer die genannten werden beim yield-Befehl ignoriert.
+
+### group
+drop
+Entfernt eine spezifische Spalte aus der Output-Tabelle des yield-Befehles.
+
+### pivot
+mean()
+Berechnet den Durchschnitt der Daten
 
 # Tasks
-!TODO
+Die Task-Engine führt Flux-Skripte gemäß einem festgelegtem Zeitplan aus.
 
-???!TODO???
+Einer der häufigsten Anwendungsfälle für InfluxDB-Tasks besteht darin, Daten zu reduzieren (downsampling), um die Speichernutzung zu reduzieren, während Daten im Laufe der Zeit gesammelt werden. 
+
+><br>Beispiel Task
+>
+>Gehen wir davon aus wir möchten in unserem "Weather" Bucket das Measurement "airSensors" längerfristig archivieren und dabei unsere Speichernutzung reduzieren.
+>
+>Wir erstellen als erstes einen neuen Taks und geben als erstet an nach welchem Intervall das Script ausgeführt werden soll.
+>
+> 1. from(bucket: "Weather") - Da unser Measurement was wir archivieren wollen in diesem Bucket liegt
+> 2. range(start: -7d) - Da unser Script alle 7 Tage ausgeführt wird brauchen wir alle Daten der letzten 7 Tage
+> 3. aggregateWindow(every: 10m, fn: mean) - Wird reduzieren die Daten auf ein 10 Minuten Fenster und ermitteln dafür den Mittelwert. 
+> 4. to(bucket: "Weather_Downsample") - Der Bucket in dem wir die Daten archivieren wollen.
+> 
+>![alt](images\tasks_1.png)
+>
+>Wie man sieht haben unsere airSensoren in der letzten Stunde 8640 Datensätze produziert.
+>![alt](images\tasks_2.png)
+>![alt](images\tasks_3.png)
+>
+>Nach dem wir unser Tasks ausgeführt haben sich unsere Datensätze auf 144 reduziert.
+>![alt](images\tasks_4.png)
+>![alt](images\tasks_5.png)
