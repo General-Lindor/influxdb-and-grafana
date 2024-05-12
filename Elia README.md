@@ -87,7 +87,7 @@ Die InfluxDB-Weboberfläche ermöglicht das Schreiben sowohl mit dem "Line Proto
 > ##### *Syntax Beispiel*
 >
 > 
-> ![alt](images\line.png)<br><br>
+> ![alt](images/line.png)<br><br>
 
 ### InfluxDB CLI
 Die CLI ist einfach zu bedienen und perfekt für Entwickler, die normalerweise nicht GUIs bevorzugen.
@@ -95,7 +95,7 @@ Die CLI ist einfach zu bedienen und perfekt für Entwickler, die normalerweise n
 *Beispiel:*
 > <br>Die ID vom Bucket in den geschrieben werden soll mithilfe dem Befehl ``` influx bucket list ``` herrausfinden.
 > 
-> ![alt](images\bucket_list.png)
+> ![alt](images/bucket_list.png)
 > <sup>*Da der Bucket & Organisations Name Special Chars beinhalten kann & mutable sind wird die ID verwendet*</sub>
 > 
 > Jetzt können wir mit dem Befehl ``` influx write ``` & dem Line Protocol Daten in den Bucket schreiben. 
@@ -127,14 +127,14 @@ Die CLI ist einfach zu bedienen und perfekt für Entwickler, die normalerweise n
 Mithilfe der Funktionen csv.from() oder array.from() kann ein annotiertes CSV generiert und anschließend mit der Funktion to() in die InfluxDB geschrieben werden.
 
 > <br><sup> In diesem Beispiel importeren wir erst Sample Daten von InfluxDB und schreiben diese dann in den Bucket "WEATHER"</sup><br>
-> ![alt](images\flux_write.png)<br>
+> ![alt](images/flux_write.png)<br>
 > <br>
 
 ### Client-Bibliotheken
 InfluxDB bietet 13 Client-Bibliotheken zur Auswahl an. Darunter Python, C#, Java, und mehr.
 
 > <br><sup>Beispiel mit Python</sup><br>
-> ![alt](images\py_sample.png)
+> ![alt](images/py_sample.png)
 > <br><br>
 
 ### Telegraf
@@ -142,21 +142,76 @@ Mit dem Plugin-System von Telegraf & den über 200 Plugins lassen sich schnell A
 
 > <br>Beispiel <br><br>
 > Als aller erstet muss das gewünschte Plugin gewählt werden. Um das Beispiel einfach zu halten benutzten wir das System Plugin da dies keine zusätlichen Konfigurationen braucht.<br>
-> ![alt](images\telegraf_1.png)<br>
+> ![alt](images/telegraf_1.png)<br>
 > <br><br>Nach dem das Plugin ausgewählt wurde können wir das Plugin im Normalfall konfigurieren.<br>
-> ![alt](images\telegraf_2.png)<br>
+> ![alt](images/telegraf_2.png)<br>
 > <br>Nun müssen wir unsere INFLUX_TOKEN Variable mit ```SET INFLUX_TOKEN=<TOKEN>``` oder ```export INFLUX_TOKEN=<TOKEN>``` setzten & danach Telegaf mit der im vorherigen erstellten Config start. ```telegraf --config http://localhost:8086/api/v2/telegrafs/<CONFIG_ID>```
-> ![alt](images\telegraf_3.png)<br>
-> ![alt](images\telegraf_4.png)<br>
+> ![alt](images/telegraf_3.png)<br>
+> ![alt](images/telegraf_4.png)<br>
 > <br><br>Nun werden automatisch über Telegraf Daten in unseren System Bucket geschieben<br>
-> ![alt](images\telegraf_5.png)<br>
-> ![alt](images\telegraf_6.png)<br>
+> ![alt](images/telegraf_5.png)<br>
+> ![alt](images/telegraf_6.png)<br>
 
 # Flux
 
-!TODO
+Flux ist das SQL von InfluxDB. Während SQL jedoch gleichzeitig eine DDL (Data Definition Language), DML (Data Manipulation Language), DCL (Data Control Language) und TCL (Transaction Control Protocol) ist, ist Flux eine reine Data Query Language. Mit Flux kann man keine Struktur vorgeben, keine Daten einfügen oder löschen und keine Zugriffsrechte manipulieren. Äquivalente Befehle zu CREATE, INSERT oder DELETE existieren nicht. Dafür bietet Flux jedoch breite Funktionalität im Bereuch Datenanalyse.
+
+### Typischer Aufbau einer Flux Query
+Eine typische Flux query ist folgendermaßen aufgebaut:
+```
+data = from(bucket: "system_monitoring")
+    |> range(start: -15m)
+    |> filter(fn: (r) => (r._measurement == "CPU") and ((r._field == "Auslastung") or (r._field == "Frequenz")))
+    |> group(columns: ["_field"], mode: "by")
+    |> keep(columns: ["_time", "_field", "_value"])
+    |> yield(name: "_results")
+    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+```
+
+Gehen wir die verschiedenen Befehle durch:
+
+### range
+Entspricht dem WHERE-Teil des SELECT-Statements
+
+### filter
+Entspricht dem Spalten-Teil und dem FROM-Teil des SELECT-Statements
+
+### yield
+sorgt dafür, dass die Daten ausgegeben werden. Alles, was danach mit den Daten passiert (außer pivot) hat keinen Einfluss auf den Output. Sollte in jeder Flux-Query vorhanden sein.
+
+### keep
+Alle Spalten außer die genannten werden beim yield-Befehl ignoriert.
+
+### group
+drop
+Entfernt eine spezifische Spalte aus der Output-Tabelle des yield-Befehles.
+
+### pivot
+mean()
+Berechnet den Durchschnitt der Daten
 
 # Tasks
-!TODO
+Die Task-Engine führt Flux-Skripte gemäß einem festgelegtem Zeitplan aus.
 
-???!TODO???
+Einer der häufigsten Anwendungsfälle für InfluxDB-Tasks besteht darin, Daten zu reduzieren (downsampling), um die Speichernutzung zu reduzieren, während Daten im Laufe der Zeit gesammelt werden. 
+
+><br>Beispiel Task
+>
+>Gehen wir davon aus wir möchten in unserem "Weather" Bucket das Measurement "airSensors" längerfristig archivieren und dabei unsere Speichernutzung reduzieren.
+>
+>Wir erstellen als erstes einen neuen Taks und geben als erstet an nach welchem Intervall das Script ausgeführt werden soll.
+>
+> 1. from(bucket: "Weather") - Da unser Measurement was wir archivieren wollen in diesem Bucket liegt
+> 2. range(start: -7d) - Da unser Script alle 7 Tage ausgeführt wird brauchen wir alle Daten der letzten 7 Tage
+> 3. aggregateWindow(every: 10m, fn: mean) - Wird reduzieren die Daten auf ein 10 Minuten Fenster und ermitteln dafür den Mittelwert. 
+> 4. to(bucket: "Weather_Downsample") - Der Bucket in dem wir die Daten archivieren wollen.
+> 
+>![alt](images/tasks_1.png)
+>
+>Wie man sieht haben unsere airSensoren in der letzten Stunde 8640 Datensätze produziert.
+>![alt](images/tasks_2.png)
+>![alt](images/tasks_3.png)
+>
+>Nach dem wir unser Tasks ausgeführt haben sich unsere Datensätze auf 144 reduziert.
+>![alt](images/tasks_4.png)
+>![alt](images/tasks_5.png)
