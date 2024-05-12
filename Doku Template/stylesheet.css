@@ -184,13 +184,13 @@ img {
 }
 
 a {
-    font-size: 2.2rem;
+    font-size: 12px;
     color:#00EDFA;
 }
 
 li {
-    font-size: 14px;
-    margin-left: 10px;
+    font-size: 12px;
+    margin-left: 12px;
     list-style-type: circle;
     display: list-item;
  }
