@@ -209,6 +209,17 @@ code {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.section p {
+.section p:last-child {
     margin-bottom: 0px;
+}
+
+.section ul {
+    padding-left: 12px;
+}
+
+.code-block {
+    border-radius: 6px;
+    background-color: color-mix(in srgb, var(--bg-color), white 15%);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: .2rem;
 }

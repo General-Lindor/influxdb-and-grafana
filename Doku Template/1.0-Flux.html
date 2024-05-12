@@ -36,6 +36,7 @@
             </nav>
         </header>
         <h1>Flux</h1>
+        <div class="section">
         <p>
             Flux ist das SQL von InfluxDB.<br>
             Flux ist eine funktionale Skriptsprache, die darauf ausgelegt ist, Abfragen, Daten-Transformation, Analyse und das Reagieren auf Daten in einer einzigen Syntax zu vereinen.
@@ -54,7 +55,7 @@
         <img src="img/flux_write.png"></img>
         <h2>Typischer Aufbau einer Flux Query</h2>
         <p>Eine typische Flux query ist folgendermaßen aufgebaut:</p>
-        <code>
+        <div class="code-block">
             data = from(bucket: "system_monitoring")<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> range(start: -15m)<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> filter(fn: (r) => (r._measurement == "CPU") and ((r._field == "Auslastung") or (r._field == "Frequenz")))<br>
@@ -62,7 +63,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> keep(columns: ["_time", "_field", "_value"])<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> yield(name: "_results")<br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
-        </code>
+        </div>
         <p>
             Gehen wir die verschiedenen Befehle durch:
         </p>
@@ -82,5 +83,6 @@
         <p>__PLACEHOLDER__</p>
         <h2>mean()</h2>
         <p>Berechnet den Durchschnitt der Daten</p>
+    </div>
     </body>
 </html>
