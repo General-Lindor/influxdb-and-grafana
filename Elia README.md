@@ -127,13 +127,13 @@ Die CLI ist einfach zu bedienen und perfekt für Entwickler, die normalerweise n
 Mithilfe der Funktionen csv.from() oder array.from() kann ein annotiertes CSV generiert und anschließend mit der Funktion to() in die InfluxDB geschrieben werden.
 
 > <br><sup> In diesem Beispiel importeren wir erst Sample Daten von InfluxDB und schreiben diese dann in den Bucket "WEATHER"</sup><br>
-> ![alt](images\flux_write.png)
-> <br><br>
+> ![alt](images\flux_write.png)<br>
+> <br>
 
 ### Client-Bibliotheken
 InfluxDB bietet 13 Client-Bibliotheken zur Auswahl an. Darunter Python, C#, Java, und mehr.
 
-> <br><sup>Beispiel mit Python</sup>
+> <br><sup>Beispiel mit Python</sup><br>
 > ![alt](images\py_sample.png)
 > <br><br>
 
@@ -141,17 +141,16 @@ InfluxDB bietet 13 Client-Bibliotheken zur Auswahl an. Darunter Python, C#, Java
 Mit dem Plugin-System von Telegraf & den über 200 Plugins lassen sich schnell Anbindungen zu den verschiedestend Schnittstellen einrichten. Die Daten können dann von Telegraf in die InfluxDB geschrieben werden & die Datenquellen lassen sich einfach über eine Konfigurationsdatei definieren.
 
 > <br>Beispiel <br><br>
-> Als aller erstet muss das gewünschte Plugin gewählt werden. Um das Beispiel einfach zu halten benutzten wir das System Plugin da dies keine zusätlichen Konfigurationen braucht.
-> ![alt](images\telegraf_1.png)
-> <br><br>Nach dem das Plugin ausgewählt wurde können wir das Plugin im Normalfall konfigurieren.
-> ![alt](images\telegraf_2.png)
-> <br><br>Nun müssen wir unsere INFLUX_TOKEN Variable mit ```SET INFLUX_TOKEN=<TOKEN>``` oder ```export INFLUX_TOKEN=<TOKEN>``` setzten & danach Telegaf mit der im vorherigen erstellten Config start. ```telegraf --config http://localhost:8086/api/v2/telegrafs/<CONFIG_ID>```
->  
-> ![alt](images\telegraf_3.png)
-> ![alt](images\telegraf_4.png)
-> <br><br>Nun werden automatisch über Telegraf Daten in unseren System Bucket geschieben
-> ![alt](images\telegraf_5.png)
-> ![alt](images\telegraf_6.png)
+> Als aller erstet muss das gewünschte Plugin gewählt werden. Um das Beispiel einfach zu halten benutzten wir das System Plugin da dies keine zusätlichen Konfigurationen braucht.<br>
+> ![alt](images\telegraf_1.png)<br>
+> <br><br>Nach dem das Plugin ausgewählt wurde können wir das Plugin im Normalfall konfigurieren.<br>
+> ![alt](images\telegraf_2.png)<br>
+> <br>Nun müssen wir unsere INFLUX_TOKEN Variable mit ```SET INFLUX_TOKEN=<TOKEN>``` oder ```export INFLUX_TOKEN=<TOKEN>``` setzten & danach Telegaf mit der im vorherigen erstellten Config start. ```telegraf --config http://localhost:8086/api/v2/telegrafs/<CONFIG_ID>```
+> ![alt](images\telegraf_3.png)<br>
+> ![alt](images\telegraf_4.png)<br>
+> <br><br>Nun werden automatisch über Telegraf Daten in unseren System Bucket geschieben<br>
+> ![alt](images\telegraf_5.png)<br>
+> ![alt](images\telegraf_6.png)<br>
 
 # Flux
 
