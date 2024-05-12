@@ -171,7 +171,7 @@ p {
     text-align: left;
     line-height: auto;
     color: var(--text-color);
-    /* margin-bottom: 14px; */
+    margin-bottom: 14px;
 }
 
 img {
@@ -184,13 +184,13 @@ img {
 }
 
 a {
-    font-size: 12px;
+    font-size: 2.2rem;
     color:#00EDFA;
 }
 
 li {
-    font-size: 12px;
-    margin-left: 12px;
+    font-size: 14px;
+    margin-left: 10px;
     list-style-type: circle;
     display: list-item;
  }
@@ -207,4 +207,8 @@ code {
     margin: .5rem .5rem .5rem 0rem;
     padding: 1rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.section p {
+    margin-bottom: 0px;
 }
