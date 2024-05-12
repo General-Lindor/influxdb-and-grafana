@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Section 0</title>
+        <link rel="icon" type="image/x-icon" href="img/influxdb_logo.svg">
+
+        <!--
+            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        -->
+
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    </head>
+    <body>
+        <p>
+            Datenelemente sind so etwas wie das influxDB-Äquivalent zu Datenbanken, Tabellen, Spalten u. Reihen in SQL.
+            Sie sagen etwas über die Datenstruktur aus und sind für Lese- und Schreibzugriffe von elementarer Bedeutung.
+        </p>
+        <h3>Bucket</h3>
+        <p>
+            Alle Daten in InfluxDB werden in sogenannten Buckets geschriben.
+            Ein Bucket ist ein Container, der so viele Measurements wie gewünscht speichern kann.
+            Zudem können Tokens erstellt werden, wodurch die Lese- und Schreibberechtigungen für einen bestimmten Bucket gesteuert werden können.
+            Des Weiteren muss beim Erstellen eines Buckets eine Aufbewahrungsfrist (Retention Period) festgelegt werden. Diese bestimmt, wie lange die Daten in einem Bucket gespeichert werden.
+        </p>
+
+        <h3>Measurement</h3>
+        <p>
+            Measurements sind die höchste Datenstruktur innerhalb eines Buckets.
+            Sie können wie Tabellen in einer traditionellen SQL-Datenbank betrachtet werden.
+            Sie sind eine logische Gruppierung der Daten und enthalten mehrere Tags & Fields, außerdem sollten alle Punkte eines Measurements dieselben Tags haben.
+        </p>
+        <p>
+            Ein Bespiel:
+        </p>
+        <p>
+            Sie entwickeln eine Wetter-App und schreiben Wetterdaten für mehrere Städte in einen Bucket.
+            Für diesen Fall könnten Sie ein Measurement namens "air_temperature" erstellen und ein zweites Measurement z.B. "water_temperature".
+        </p>
+
+        <h3>Tag</h3>
+        <p>
+            Ein Tag besteht aus einem Key-Value-Pair und enthält wichtige Metadaten.
+            Diese beinhalten typischerweise Informationen über die Datenquelle.
+        </p>
+        <p>
+            Ein Bespiel:
+        </p>
+        <p>
+            Sie entwickeln eine Wetter-App und speichern Wetterdaten für mehrere Städte in einem Bucket.
+            In diesem Fall könnten Sie einen Tag mit dem Schlüssel "location" erstellen, wobei die Tag-Werte die jeweiligen Standorte wie "Berlin", "Hamburg", "Köln". ... enthalten.
+        </p>
+
+        <h3>Field</h3>
+        <p>
+            Ein Field besteht aus einem Key-Value-Paar und enthält die tatsächlichen Daten, die gespeichert, visualisiert und für Berechnungen usw. verwendet werden.
+        </p>
+        <p>
+            Ein Bespiel:
+        </p>
+        <p>
+            Sie entwickeln eine Wetter-App und speichern Wetterdaten.
+            In diesem Fall könnten Sie einen Field mit dem Schlüssel "temperature", "humidity" oder z.B. "co2" erstellen werden, wobei die Field-Werte die tatsächlichen Messwerte enthalten.
+        </p>
+
+        <h3>Timestamp</h3>
+        <p>
+            Ein Zeitstempel, der mit den Daten verknüpft ist.
+        </p>
+    </body>
+</html>

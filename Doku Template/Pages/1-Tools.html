@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Section 0</title>
+        <link rel="icon" type="image/x-icon" href="img/influxdb_logo.svg">
+
+        <!--
+            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        -->
+
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    </head>
+    <body>
+        <p>Um Entwicklern die Arbeit mit Daten in InfluxDB zu erleichtern, bietet InfluxDB eine breite Palette an Tools an.</p>
+
+        <h3>InfluxDB UI</h3>
+        <p>
+            Die InfluxDB UI bietet eine vollständige Weboberfläche für die Arbeit mit InfluxDB. Die InfluxDB-Weboberfläche ermöglicht es:
+        </p>
+        <ul>
+            <li>Abfragen erstellen um Daten visuell darzustellen.</li>
+            <li>Flux-Code im Flux-Script-Editor zu bearbeiten</li>
+            <li>Dashboards und Notizbücher zu erstellen</li>
+            <li>Benutzer zu verwalten</li>
+            <li>Tasks zu erstellen und zu verwalten</li>
+            <li>Checks und Alerts zu erstellen.</li>
+        </ul>
+        <p>
+            Die InfluxDB-Weboberfläche ermöglicht das Schreiben sowohl mit dem "Line Protocol" als auch mit "Annotated CSV Files" in InfluxDB.
+            Darüber hinaus wird auch die Verwaltung von Telegraf-Konfigurationen ermöglicht.
+        </p>
+        
+        <h3>Flux</h3>
+        <p>
+            Flux ist eine funktionale Skriptsprache, die darauf ausgelegt ist, Abfragen, Daten-Transformation, Analyse und das Reagieren auf Daten in einer einzigen Syntax zu vereinen.
+        </p>
+        <ul>
+            <li>Daten transformieren und analysieren</li>
+            <li>Tasks schreiben</li>
+            <li>...</li>
+        </ul>
+
+        <h3>Task Engine</h3>
+        <p>
+            Die Task-Engine führt Flux-Skripte gemäß einem festgelegtem Zeitplan aus.
+        </p>
+        <ul>
+            <li>Datenverarbeitung zur Beschleunigung von Visualisierungen</li>
+            <li>Benachrichtigungen erhalten, wenn Daten nicht mehr geschrieben werden oder bestimmte Schwellenwerte überschritten werden</li>
+            <li>Aufrufen externer Dienste</li>
+        </ul>
+
+        <h3>Rest API</h3>
+        <p>
+            InfluxDB ist vollständig in eine REST-API integriert.
+            Die API ermöglicht natürlich das Schreiben und Abfragen von Daten, bietet aber auch alles, was zur Verwaltung der Datenbank benötigt wird, einschließlich der Erstellung von Ressourcen wie Authentifizierungstoken, Buckets, Benutzern usw.
+        </p>
+
+        <h3>Client Bibliotheken</h3>
+        <p>
+            Man ist nicht darauf beschränkt, REST-Aufrufe selbst durchzuführen.
+            InfluxDB bietet Client-Bibliotheken in 13 Sprachen an.
+            Mit diesen Client-Bibliotheken können InfluxDB-Funktionen problemlos in eine bestehende Codebasis integriert oder eine neue Codebasis erstellt werden.
+        </p>
+        <ul>
+            <li>Python</li>
+            <li>C#</li>
+            <li>Java</li>
+            <li>...</li>
+        </ul>
+
+        <h3>Telegraf</h3>
+        <p>
+            Telegraf ist ein agent-basiertes Tool, das Daten aus verschiedenen Quellen sammelt und weiterverarbeitet.
+            Es verfügt über ein erweiterbares Plugin-System mit über 200 Plugins, die bei der Anbindung unterschiedlicher Schnittstellen helfen.
+            Die Daten können von Telegraf in die InfluxDB geschrieben werden. Die Datenquellen lassen sich über die Konfigurationsdatei definieren.
+        </p>
+    </body>
+</html>

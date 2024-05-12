@@ -1,78 +1,77 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dokumentation: Was ist eigentlich influxDB?</title>
-    <link rel="icon" type="image/x-icon" href="img/influxdb_logo.svg">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dokumentation: Was ist eigentlich influxDB?</title>
+        <link rel="icon" type="image/x-icon" href="img/influxdb_logo.svg">
 
-    <!--
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    -->
+        <!--
+            <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        -->
 
-    <link rel="stylesheet" type="text/css" href="Pages/stylesheet.css">
-</head>
-<body>
-    <header class="header">
-        <a href="#" class="logo"><img src="ressources/bosco-logo-png.png" alt=""></a>
+        <link rel="stylesheet" type="text/css" href="Pages/stylesheet.css">
+    </head>
+    <body>
+        <header class="header">
+            <a href="#" class="logo"><img src="img/influxdb_logo.svg" alt=""></a>
 
-        <i class='bx bx-menu' id="menu-icon"></i>
+            <i class='bx bx-menu' id="menu-icon"></i>
 
-        <nav class="navbar">
-            <a href="#influxDB" class="active">influxDB</a>
-            <a href="#Tools">Tools</a>
-            <a href="#Datenelemente">Datenelemente</a>
-            <a href="#schreiben">Daten schreiben</a>
-            <a href="#lesen">Daten lesen</a>
-            <a href="#Flux">Flux Query Language</a>
-            <a href="#Tasks">Tasks</a>
-            <!--
-                <div class="dropdown">
-                    <a href="#admin-page" class="dropbtn">
-                        Admin Page
-
-                    </a>
-                    <div class="dropdown-content">
-                        <a href="#zeiterfassungsverwaltung">Zeiterfassungsverwaltung</a>
-                        <a href="#personalverwaltung">Personalverwaltung</a>
-                        <a href="#rollenverwaltung">Rollenverwaltung</a>
+            <nav class="navbar">
+                <a href="#influxDB" class="active">influxDB</a>
+                <a href="#Tools">Tools</a>
+                <a href="#Datenelemente">Datenelemente</a>
+                <a href="#schreiben">Daten schreiben</a>
+                <a href="#lesen">Daten lesen</a>
+                <a href="#Flux">Flux Query Language</a>
+                <a href="#Tasks">Tasks</a>
+                <!--
+                    <div class="dropdown">
+                        <a href="#admin-page" class="dropbtn">
+                            Admin Page
+            
+                        </a>
+                        <div class="dropdown-content">
+                            <a href="#zeiterfassungsverwaltung">Zeiterfassungsverwaltung</a>
+                            <a href="#personalverwaltung">Personalverwaltung</a>
+                            <a href="#rollenverwaltung">Rollenverwaltung</a>
+                        </div>
                     </div>
-                </div>
-            -->
-        </nav>
-    </header>
+                -->
+            </nav>
+        </header>
+        <section class="influxDB" id="influxDB">
+            <h2>Was ist influxDB?</h2>
+            <iFrame src="Pages/0-influxDB.html" width="100%" height="100%"></iFrame>
+        </section>
+        <section class="Tools" id="Tools">
+            <h2>Welche Tools (Werkzeuge) bietet influxDB?</h2>
+            <iFrame src="Pages/1-Tools.html" width="100%" height="100%"></iFrame>
+        </section>
+        <section class="Datenelemente" id="Datenelemente">
+            <h2>Was sind Datenelemente? Welche Datenelemente hat influxDB?</h2>
+            <iFrame src="Pages/2-Datenelemente.html" width="100%" height="100%"></iFrame>
+        </section>
+        <section class="schreiben" id="schreiben">
+            <h2>Wie kann ich Daten in influxDB schreiben?</h2>
+            <iFrame src="Pages/3-Daten schreiben.html" width="100%" height="100%"></iFrame>
+        </section>
+        <section class="lesen" id="lesen">
+            <h2>Wie kann ich Daten aus influxDB auslesen?</h2>
+            <iFrame src="Pages/4-Daten lesen.html" width="100%" height="100%"></iFrame>
+        </section>
+        <section class="Flux" id="Flux">
+            <h2>Wie funktioniert die Flux Query Language?</h2>
+            <iFrame src="Pages/5-Flux Query Language.html" width="100%" height="100%"></iFrame>
+        </section>
+        <section class="Tasks" id="Tasks">
+            <h2>Was und wie wichtig sind Tasks?</h2>
+            <iFrame src="Pages/6-Tasks.html" width="100%" height="100%"></iFrame>
+        </section>
 
-    <section class="influxDB" id="influxDB">
-        <h2>__PLACEHOLDER__</h2>
-        <frame scr="Pages/0-influxDB.html">
-    </section>
-    <section class="Tools" id="Tools">
-        <h2>__PLACEHOLDER__</h2>
-        <frame scr="Pages/1-Tools.html">
-    </section>
-    <section class="Datenelemente" id="Datenelemente">
-        <h2>__PLACEHOLDER__</h2>
-        <frame scr="Pages/2-Datenelemente.html">
-    </section>
-    <section class="schreiben" id="schreiben">
-        <h2>__PLACEHOLDER__</h2>
-        <frame scr="Pages/3-Daten schreiben.html">
-    </section>
-    <section class="lesen" id="lesen">
-        <h2>__PLACEHOLDER__</h2>
-        <frame scr="Pages/4-Daten lesen.html">
-    </section>
-    <section class="Flux" id="Flux">
-        <h2>__PLACEHOLDER__</h2>
-        <frame scr="Pages/5-Flux Query Language.html">
-    </section>
-    <section class="Tasks" id="Tasks">
-        <h2>__PLACEHOLDER__</h2>
-        <frame scr="Pages/5-Tasks.html">
-    </section>
-
-    <!--
-        <script src="Doku.js"></script>
-    -->
-</body>
+        <!--
+            <script src="Doku.js"></script>
+        -->
+    <b/ody>
 </html>
