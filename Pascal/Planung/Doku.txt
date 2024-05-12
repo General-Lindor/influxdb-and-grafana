@@ -1,5 +1,0 @@
-Unterschied Flux / SQL:
-
-Flux ist eine reine Data Query Language und keine Data Manipulation Language.
-Man kan mit Flux keine Daten in die Datenbank schreinen oder löschen.
-Man kann nur holen und analysieren so Sachen wie average, Sum und so berechnen
