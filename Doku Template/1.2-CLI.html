@@ -36,20 +36,21 @@
             </nav>
         </header>
         <h1>influxDB CLI (Command Line Interface)</h1>
-        <div class="section">
+        <section>
         
-        <p>Die CLI ist einfach zu bedienen und perfekt für Entwickler, die normalerweise nicht GUIs bevorzugen.</p>
-        <p>Beispiel:</p>
-        <p>Die ID vom Bucket in den geschrieben werden soll mithilfe dem Befehl <b>influx bucket list</b> herrausfinden.</p>
-        <img src="img/bucket_list.png"></img>
-        <p>Da der Bucket & Organisations Name Special Chars beinhalten kann & mutable sind, wird die ID verwendet.</p>
-        <p>Jetzt können wir mit dem Befehl <b>influx write</b> & dem Line Protocol Daten in den Bucket schreiben: </p>
-        <code>influx write --bucket-id 58eba9c8e6f6ac91 "airSensors,sensor_id=TLM0101 temperature=71.83125302870145,humidity=34.87843425604827,co=0.5177653332811699"</code>
-        
-        <p>Oder eine Text-Datei mit mehreren Line-Protocol-Befehlen setzen:</p>
-        <code>influx write --bucket-id 58eba9c8e6f6ac91 -file air-sensor-data.lìne.txt</code>
-    </div>
-        <container><p></p></container>
-        </div>
+            <p>Die CLI ist einfach zu bedienen und perfekt für Entwickler, die normalerweise nicht GUIs bevorzugen.</p>
+            <p>Beispiel:</p>
+            <p>Die ID vom Bucket in den geschrieben werden soll mithilfe dem Befehl <b>influx bucket list</b> herrausfinden.</p>
+            <img src="img/bucket_list.png"></img>
+            <p>Da der Bucket & Organisations Name Special Chars beinhalten kann & mutable sind, wird die ID verwendet.</p>
+            <p>Jetzt können wir mit dem Befehl <b>influx write</b> & dem Line Protocol Daten in den Bucket schreiben: </p>
+            <code>influx write --bucket-id 58eba9c8e6f6ac91 "airSensors,sensor_id=TLM0101 temperature=71.83125302870145,humidity=34.87843425604827,co=0.5177653332811699"</code>
+            
+            <p>Oder eine Text-Datei mit mehreren Line-Protocol-Befehlen setzen:</p>
+            <code>influx write --bucket-id 58eba9c8e6f6ac91 -file air-sensor-data.lìne.txt</code>
+        </section>
+        <container>
+            <p></p>
+        </container>
     </body>
 </html>

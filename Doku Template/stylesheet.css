@@ -31,14 +31,16 @@ body {
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 50px;
-    width: 65vw;
-    margin-left:auto;
-    margin-right:auto;
+    margin: min(200px, 5%);
+    align-items: center;
 }
 
 section {
-    min-height: 10vh;
-    padding: 10rem 9% 2rem;
+    border-radius: 12px;
+    background-color: color-mix(in srgb, var(--bg-color), white 5%);
+    margin: min(200px, 5%);
+    padding: min(50px, 1%);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .header {
@@ -197,8 +199,8 @@ li {
 
 code {
     border-radius: 6px;
-    background-color: gray;
-    padding: .2rem;
+    background-color: black;
+    display: block;
 }
 
 .section {
