@@ -213,8 +213,9 @@ li {
  }
 
 code {
-    border-radius: 6px;
+    /*border-radius: 6px;*/
     background-color: black;
     display: block;
     margin: 5px;
+    padding: 5px;
 }
