@@ -194,7 +194,7 @@ img {
 
 a {
     font-size: 12px;
-    color:#00EDFA;
+    color: color-mix(in srgb, blue, white 25%);
 }
 
 li {
