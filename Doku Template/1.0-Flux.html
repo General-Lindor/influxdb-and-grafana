@@ -36,56 +36,74 @@
             </nav>
         </header>
         <h1>Flux</h1>
-        <div class="section">
-        <p>
-            Flux ist das SQL von InfluxDB.<br>
-            Flux ist eine funktionale Skriptsprache, die darauf ausgelegt ist, Abfragen, Daten-Transformation, Analyse und das Reagieren auf Daten in einer einzigen Syntax zu vereinen.
-        </p>
-        <ul>
-            <li>Daten transformieren und analysieren</li>
-            <li>Tasks schreiben</li>
-            <li>...</li>
-        </ul>
-        <p>
-            Mithilfe der Funktionen csv.from() oder array.from() kann ein annotiertes CSV generiert und anschließend mit der Funktion to() in die InfluxDB geschrieben werden.
-        </p>
-        <p>
-            Beispiel:<br>In diesem Beispiel importeren wir erst Sample Daten von InfluxDB und schreiben diese dann in den Bucket "WEATHER"
-        </p>
-        <img src="img/flux_write.png"></img>
+        <section>
+            <p>
+                Flux ist das SQL von InfluxDB.<br>
+                Flux ist eine funktionale Skriptsprache, die darauf ausgelegt ist, Abfragen, Daten-Transformation, Analyse und das Reagieren auf Daten in einer einzigen Syntax zu vereinen.
+            </p>
+            <ul>
+                <li>Daten transformieren und analysieren</li>
+                <li>Tasks schreiben</li>
+                <li>...</li>
+            </ul>
+            <p>
+                Mithilfe der Funktionen csv.from() oder array.from() kann ein annotiertes CSV generiert und anschließend mit der Funktion to() in die InfluxDB geschrieben werden.
+            </p>
+            <p>
+                Beispiel:<br>In diesem Beispiel importeren wir erst Sample Daten von InfluxDB und schreiben diese dann in den Bucket "WEATHER"
+            </p>
+            <img src="img/flux_write.png"></img>
+        </section>
         <h2>Typischer Aufbau einer Flux Query</h2>
-        <p>Eine typische Flux query ist folgendermaßen aufgebaut:</p>
-        <div class="code-block">
-            data = from(bucket: "system_monitoring")<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> range(start: -15m)<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> filter(fn: (r) => (r._measurement == "CPU") and ((r._field == "Auslastung") or (r._field == "Frequenz")))<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> group(columns: ["_field"], mode: "by")<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> keep(columns: ["_time", "_field", "_value"])<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> yield(name: "_results")<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
-        </div>
-        <p>
-            Gehen wir die verschiedenen Befehle durch:
-        </p>
-        <h2>range</h2>
-        <p>Entspricht dem WHERE-Teil des SELECT-Statements</p>
-        <h2>filter</h2>
-        <p>Entspricht dem Spalten-Teil und dem FROM-Teil des SELECT-Statements</p>
-        <h2>yield</h2>
-        <p>sorgt dafür, dass die Daten ausgegeben werden. Alles, was danach mit den Daten passiert (außer pivot) hat keinen Einfluss auf den Output. Sollte in jeder Flux-Query vorhanden sein.</p>
-        <h2>keep</h2>
-        <p>Alle Spalten außer die genannten werden beim yield-Befehl ignoriert.</p>
-        <h2>group</h2>
-        <p>Sorgt dafür, dass man verschiedene Graphen für verschiedene measurements hatund nicht alles in einem Graph rauskommt</p>
-        <h2>drop</h2>
-        <p>Entfernt eine spezifische Spalte aus der Output-Tabelle des yield-Befehles.</p>
-        <h2>pivot</h2>
-        <p>
-            Definiert die resultierende Struktur des Graphen.
-            Leht hier die Zeit auf die x-Achse und den Wert der measurement auf dir y-Achse.
-        </p>
-        <h2>mean()</h2>
-        <p>Berechnet den Durchschnitt der Daten</p>
-    </div>
+        <section>
+            <p>Eine typische Flux query ist folgendermaßen aufgebaut:</p>
+            <code>
+                data = from(bucket: "system_monitoring")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> range(start: -15m)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> filter(fn: (r) => (r._measurement == "CPU") and ((r._field == "Auslastung") or (r._field == "Frequenz")))<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> group(columns: ["_field"], mode: "by")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> keep(columns: ["_time", "_field", "_value"])<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> yield(name: "_results")<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+            </code>
+            <p>
+                Gehen wir die verschiedenen Befehle durch:
+            </p>
+        </section>
+        <h3>range</h3>
+        <section>
+            <p>Entspricht dem WHERE-Teil des SELECT-Statements</p>
+        </section>
+        <h3>filter</h3>
+        <section>
+            <p>Entspricht dem Spalten-Teil und dem FROM-Teil des SELECT-Statements</p>
+        </section>
+        <h3>yield</h3>
+        <section>
+            <p>sorgt dafür, dass die Daten ausgegeben werden. Alles, was danach mit den Daten passiert (außer pivot) hat keinen Einfluss auf den Output. Sollte in jeder Flux-Query vorhanden sein.</p>
+        </section>
+        <h3>keep</h3>
+        <section>
+            <p>Alle Spalten außer die genannten werden beim yield-Befehl ignoriert.</p>
+        </section>
+        <h3>group</h3>
+        <section>
+            <p>Sorgt dafür, dass man verschiedene Graphen für verschiedene measurements hatund nicht alles in einem Graph rauskommt</p>
+        </section>
+        <h3>drop</h3>
+        <section>
+            <p>Entfernt eine spezifische Spalte aus der Output-Tabelle des yield-Befehles.</p>
+        </section>
+        <h3>pivot</h3>
+        <section>
+            <p>
+                Definiert die resultierende Struktur des Graphen.
+                Leht hier die Zeit auf die x-Achse und den Wert der measurement auf dir y-Achse.
+            </p>
+        </section>
+        <h3>mean()</h3>
+        <section>
+            <p>Berechnet den Durchschnitt der Daten</p>
+        </section>
     </body>
 </html>

@@ -36,27 +36,29 @@
             </nav>
         </header>
         <h1>influxDB Tasks</h1>
-        <p>
-            Die Task-Engine führt Flux-Skripte gemäß einem festgelegtem Zeitplan aus.
-            Einer der häufigsten Anwendungsfälle für InfluxDB-Tasks besteht darin, Daten zu reduzieren (downsampling), um die Speichernutzung zu reduzieren, während Daten im Laufe der Zeit gesammelt werden.
-        </p>
-        <p>Beispiel:</p>
-        <p>
-            Gehen wir davon aus wir möchten in unserem "Weather" Bucket das Measurement "airSensors" längerfristig archivieren und dabei unsere Speichernutzung reduzieren.<br>
-            Wir erstellen als erstes einen neuen Taks und geben als erstes an, nach welchem Intervall das Script ausgeführt werden soll.
-        </p>
-        <ol>
-            <li>from(bucket: "Weather") - Da unser Measurement was wir archivieren wollen in diesem Bucket liegt</li>
-            <li>range(start: -7d) - Da unser Script alle 7 Tage ausgeführt wird brauchen wir alle Daten der letzten 7 Tage</li>
-            <li>aggregateWindow(every: 10m, fn: mean) - Wird reduzieren die Daten auf ein 10 Minuten Fenster und ermitteln dafür den Mittelwert.</li>
-            <li>to(bucket: "Weather_Downsample") - Der Bucket in dem wir die Daten archivieren wollen.</li>
-        </ol>
-        <img src="img/tasks_1.png"></img>
-        <p>Wie man sieht, haben unsere airSensoren in der letzten Stunde 8640 Datensätze produziert.</p>
-        <img src="img/tasks_2.png"></img>
-        <img src="img/tasks_3.png"></img>
-        <p>Nach dem wir unser Tasks ausgeführt haben sich unsere Datensätze auf 144 reduziert.</p>
-        <img src="img/tasks_4.png"></img>
-        <img src="img/tasks_5.png"></img>
+        <section>
+            <p>
+                Die Task-Engine führt Flux-Skripte gemäß einem festgelegtem Zeitplan aus.
+                Einer der häufigsten Anwendungsfälle für InfluxDB-Tasks besteht darin, Daten zu reduzieren (downsampling), um die Speichernutzung zu reduzieren, während Daten im Laufe der Zeit gesammelt werden.
+            </p>
+            <p>Beispiel:</p>
+            <p>
+                Gehen wir davon aus wir möchten in unserem "Weather" Bucket das Measurement "airSensors" längerfristig archivieren und dabei unsere Speichernutzung reduzieren.<br>
+                Wir erstellen als erstes einen neuen Taks und geben als erstes an, nach welchem Intervall das Script ausgeführt werden soll.
+            </p>
+            <ol>
+                <li>from(bucket: "Weather") - Da unser Measurement was wir archivieren wollen in diesem Bucket liegt</li>
+                <li>range(start: -7d) - Da unser Script alle 7 Tage ausgeführt wird brauchen wir alle Daten der letzten 7 Tage</li>
+                <li>aggregateWindow(every: 10m, fn: mean) - Wird reduzieren die Daten auf ein 10 Minuten Fenster und ermitteln dafür den Mittelwert.</li>
+                <li>to(bucket: "Weather_Downsample") - Der Bucket in dem wir die Daten archivieren wollen.</li>
+            </ol>
+            <img src="img/tasks_1.png"></img>
+            <p>Wie man sieht, haben unsere airSensoren in der letzten Stunde 8640 Datensätze produziert.</p>
+            <img src="img/tasks_2.png"></img>
+            <img src="img/tasks_3.png"></img>
+            <p>Nach dem wir unser Tasks ausgeführt haben sich unsere Datensätze auf 144 reduziert.</p>
+            <img src="img/tasks_4.png"></img>
+            <img src="img/tasks_5.png"></img>
+        </section>
     </body>
 </html>

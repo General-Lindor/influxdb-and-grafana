@@ -35,76 +35,69 @@
                 <a href="3-Tasks.html">Tasks</a>
             </nav>
         </header>
-        <div class="wrapper">
         <h1>Datenelemente von influxDB</h1>
-        <p>
-            Datenelemente sind so etwas wie das influxDB-Äquivalent zu Datenbanken, Tabellen, Spalten u. Reihen in SQL.
-            Sie sagen etwas über die Datenstruktur aus und sind für Lese- und Schreibzugriffe von elementarer Bedeutung.
-        </p>
+        <section>
+            <p>
+                Datenelemente sind so etwas wie das influxDB-Äquivalent zu Datenbanken, Tabellen, Spalten u. Reihen in SQL.
+                Sie sagen etwas über die Datenstruktur aus und sind für Lese- und Schreibzugriffe von elementarer Bedeutung.
+            </p>
+        </section>
         <h2>Bucket</h2>
-
-        <div class="section">
-        <p>
-            Alle Daten in InfluxDB werden in sogenannten Buckets geschriben.
-            Ein Bucket ist ein Container, der so viele Measurements wie gewünscht speichern kann.
-            Zudem können Tokens erstellt werden, wodurch die Lese- und Schreibberechtigungen für einen bestimmten Bucket gesteuert werden können.
-            Des Weiteren muss beim Erstellen eines Buckets eine Aufbewahrungsfrist (Retention Period) festgelegt werden. Diese bestimmt, wie lange die Daten in einem Bucket gespeichert werden.
-        </p>
-        </div>
-
+        <section>
+            <p>
+                Alle Daten in InfluxDB werden in sogenannten Buckets geschriben.
+                Ein Bucket ist ein Container, der so viele Measurements wie gewünscht speichern kann.
+                Zudem können Tokens erstellt werden, wodurch die Lese- und Schreibberechtigungen für einen bestimmten Bucket gesteuert werden können.
+                Des Weiteren muss beim Erstellen eines Buckets eine Aufbewahrungsfrist (Retention Period) festgelegt werden. Diese bestimmt, wie lange die Daten in einem Bucket gespeichert werden.
+            </p>
+        </section>
         <h2>Measurement</h2>
-        
-        <div class="section">
-        <p>
-            Measurements sind die höchste Datenstruktur innerhalb eines Buckets.
-            Sie können wie Tabellen in einer traditionellen SQL-Datenbank betrachtet werden.
-            Sie sind eine logische Gruppierung der Daten und enthalten mehrere Tags & Fields, außerdem sollten alle Punkte eines Measurements dieselben Tags haben.
-        </p>
-        <p>
-            Ein Bespiel:
-        </p>
-        <p>
-            Sie entwickeln eine Wetter-App und schreiben Wetterdaten für mehrere Städte in einen Bucket.
-            Für diesen Fall könnten Sie ein Measurement namens <code>"air_temperature"</code> erstellen und ein zweites Measurement z.B. <code>"water_temperature"</code>.
-        </p>
-        </div>
-
+        <section>
+            <p>
+                Measurements sind die höchste Datenstruktur innerhalb eines Buckets.
+                Sie können wie Tabellen in einer traditionellen SQL-Datenbank betrachtet werden.
+                Sie sind eine logische Gruppierung der Daten und enthalten mehrere Tags & Fields, außerdem sollten alle Punkte eines Measurements dieselben Tags haben.
+            </p>
+            <p>
+                Ein Bespiel:
+            </p>
+            <p>
+                Sie entwickeln eine Wetter-App und schreiben Wetterdaten für mehrere Städte in einen Bucket.
+                Für diesen Fall könnten Sie ein Measurement namens <code>"air_temperature"</code> erstellen und ein zweites Measurement z.B. <code>"water_temperature"</code>.
+            </p>
+        </section>
         <h2>Tag</h2>
-        <div class="section">
-
-        <p>
-            Ein Tag besteht aus einem Key-Value-Pair und enthält wichtige Metadaten.
-            Diese beinhalten typischerweise Informationen über die Datenquelle.
-        </p>
-        <p>
-            Ein Bespiel:
-        </p>
-        <p>
-            Sie entwickeln eine Wetter-App und speichern Wetterdaten für mehrere Städte in einem Bucket.
-            In diesem Fall könnten Sie einen Tag mit dem Schlüssel "location" erstellen, wobei die Tag-Werte die jeweiligen Standorte wie "Berlin", "Hamburg", "Köln". ... enthalten.
-        </p>
-        </div>
-
+        <section>
+            <p>
+                Ein Tag besteht aus einem Key-Value-Pair und enthält wichtige Metadaten.
+                Diese beinhalten typischerweise Informationen über die Datenquelle.
+            </p>
+            <p>
+                Ein Bespiel:
+            </p>
+            <p>
+                Sie entwickeln eine Wetter-App und speichern Wetterdaten für mehrere Städte in einem Bucket.
+                In diesem Fall könnten Sie einen Tag mit dem Schlüssel "location" erstellen, wobei die Tag-Werte die jeweiligen Standorte wie "Berlin", "Hamburg", "Köln". ... enthalten.
+            </p>
+        </section>
         <h2>Field</h2>
-        <div class="section">
-        <p>
-            Ein Field besteht aus einem Key-Value-Paar und enthält die tatsächlichen Daten, die gespeichert, visualisiert und für Berechnungen usw. verwendet werden.
-        </p>
-        <p>
-            Ein Bespiel:
-        </p>
-        <p>
-            Sie entwickeln eine Wetter-App und speichern Wetterdaten.
-            In diesem Fall könnten Sie einen Field mit dem Schlüssel "temperature", "humidity" oder z.B. "co2" erstellen werden, wobei die Field-Werte die tatsächlichen Messwerte enthalten.
-        </p>
-        </div>
-
+        <section>
+            <p>
+                Ein Field besteht aus einem Key-Value-Paar und enthält die tatsächlichen Daten, die gespeichert, visualisiert und für Berechnungen usw. verwendet werden.
+            </p>
+            <p>
+                Ein Bespiel:
+            </p>
+            <p>
+                Sie entwickeln eine Wetter-App und speichern Wetterdaten.
+                In diesem Fall könnten Sie einen Field mit dem Schlüssel "temperature", "humidity" oder z.B. "co2" erstellen werden, wobei die Field-Werte die tatsächlichen Messwerte enthalten.
+            </p>
+        </section>
         <h2>Timestamp</h2>
-        <div class="section">
-        <p>
-            Ein Zeitstempel, der mit den Daten verknüpft ist.
-        </p>
-        </div>
-    </div>
+        <section>
+            <p>
+                Ein Zeitstempel, der mit den Daten verknüpft ist.
+            </p>
+        </section>
     </body>
 </html>

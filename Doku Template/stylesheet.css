@@ -38,7 +38,10 @@ body {
 section {
     border-radius: 12px;
     background-color: color-mix(in srgb, var(--bg-color), white 5%);
-    margin: min(200px, 5%);
+    margin-left: min(200px, 5%);
+    margin-right: min(200px, 5%);
+    margin-bottom: min(200px, 5%);
+    margin-top: min(10px, 1%);
     padding: min(50px, 1%);
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
@@ -156,7 +159,9 @@ h2 {
     line-height: auto;
     color: var(--main-color) !important;
     font-weight: bold !important;
-    margin-top: 18px;
+    border-radius: 12px;
+    margin-left: min(200px, 5%);
+    padding-left: min(50px, 1%);
 }
 
 h3 {
@@ -165,7 +170,9 @@ h3 {
     line-height: auto;
     color: var(--main-color) !important;
     font-weight: bold !important;
-    margin-top: 16px;
+    border-radius: 12px;
+    margin-left: min(200px, 5%);
+    padding-left: min(50px, 1%);
 }
 
 p {
@@ -201,27 +208,5 @@ code {
     border-radius: 6px;
     background-color: black;
     display: block;
-}
-
-.section {
-    border-radius: 12px;
-    background-color: color-mix(in srgb, var(--bg-color), white 5%);
-    margin: .5rem .5rem .5rem 0rem;
-    padding: 1rem;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-
-.section p:last-child {
-    margin-bottom: 0px;
-}
-
-.section ul {
-    padding-left: 12px;
-}
-
-.code-block {
-    border-radius: 6px;
-    background-color: color-mix(in srgb, var(--bg-color), white 15%);
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    padding: .2rem;
+    margin: 5px;
 }

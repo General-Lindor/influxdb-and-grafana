@@ -36,32 +36,34 @@
             </nav>
         </header>
         <h1>Telegraf</h1>
-        <p>
-            Mit dem Plugin-System von Telegraf & den über 200 Plugins lassen sich schnell Anbindungen zu den verschiedestend Schnittstellen einrichten.
-            Die Daten können dann von Telegraf in die InfluxDB geschrieben werden & die Datenquellen lassen sich einfach über eine Konfigurationsdatei definieren.<br>
-        </p>
-        <p>
-            Beispiel:<br>
-        </p>
-        <p>
-            Als aller erstet muss das gewünschte Plugin gewählt werden.
-            Um das Beispiel einfach zu halten, benutzten wir das System Plugin, da dies keine zusätlichen Konfigurationen braucht.<br>
-        </p>
-        <img src="img/telegraf_1.png"></img>
-        > <br><br>Nach dem das Plugin ausgewählt wurde können wir das Plugin im Normalfall konfigurieren.<br>
-        <img src="img/telegraf_2.png"></img>
-        <p>
-            Nun müssen wir unsere INFLUX_TOKEN Variable mit
-            <code>SET INFLUX_TOKEN=&#60;TOKEN&#62;</code>
-            oder
-            <code>export INFLUX_TOKEN=&#60;TOKEN&#62;</code>
-            setzten & danach Telegaf mit der im vorherigen erstellten Config start.
-            <code>telegraf --config http://localhost:8086/api/v2/telegrafs/&#60;CONFIG_ID&#62;</code>
-        </p>
-        <img src="img/telegraf_3.png"></img>
-        <img src="img/telegraf_4.png"></img>
-        <p>Nun werden automatisch über Telegraf Daten in unseren System Bucket geschieben:<br></p>
-        <img src="img/telegraf_5.png"></img>
-        <img src="img/telegraf_6.png"></img>
+        <section>
+            <p>
+                Mit dem Plugin-System von Telegraf & den über 200 Plugins lassen sich schnell Anbindungen zu den verschiedestend Schnittstellen einrichten.
+                Die Daten können dann von Telegraf in die InfluxDB geschrieben werden & die Datenquellen lassen sich einfach über eine Konfigurationsdatei definieren.<br>
+            </p>
+            <p>
+                Beispiel:<br>
+            </p>
+            <p>
+                Als aller erstet muss das gewünschte Plugin gewählt werden.
+                Um das Beispiel einfach zu halten, benutzten wir das System Plugin, da dies keine zusätlichen Konfigurationen braucht.<br>
+            </p>
+            <img src="img/telegraf_1.png"></img><br>
+            Nach dem das Plugin ausgewählt wurde können wir das Plugin im Normalfall konfigurieren.<br>
+            <img src="img/telegraf_2.png"></img>
+            <p>
+                Nun müssen wir unsere INFLUX_TOKEN Variable mit
+                <code>SET INFLUX_TOKEN=&#60;TOKEN&#62;</code>
+                oder
+                <code>export INFLUX_TOKEN=&#60;TOKEN&#62;</code>
+                setzten & danach Telegaf mit der im vorherigen erstellten Config start.
+                <code>telegraf --config http://localhost:8086/api/v2/telegrafs/&#60;CONFIG_ID&#62;</code>
+            </p>
+            <img src="img/telegraf_3.png"></img>
+            <img src="img/telegraf_4.png"></img>
+            <p>Nun werden automatisch über Telegraf Daten in unseren System Bucket geschieben:<br></p>
+            <img src="img/telegraf_5.png"></img>
+            <img src="img/telegraf_6.png"></img>
+        </section>
     </body>
 </html>
